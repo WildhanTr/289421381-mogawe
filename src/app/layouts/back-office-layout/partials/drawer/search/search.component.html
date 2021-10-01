@@ -1,0 +1,28 @@
+<!-- Search Box -->
+<form class="search-box right-side-icon mw-100 mb-8">
+  <input type="search"
+         class="form-control form-control-lg"
+         [formControl]="searchQuery"
+         placeholder="Search in mails...">
+  <button type="submit" class="search-icon"><gx-icon name="search" size="lg"></gx-icon></button>
+</form>
+<!-- /search box -->
+
+<h4>Recently Viewed</h4>
+
+<!-- Search Result-->
+<div class="search-result" *ngFor="let message of messages | filter: searchText">
+  <a href="javascript:void(0)" class="dt-avatar-wrapper">
+    <!-- Avatar -->
+    <gx-avatar [user]="message" [charLength]="0" class="font-italic"></gx-avatar>
+    <!-- /avatar -->
+
+    <!-- Avatar Info -->
+    <span class="dt-avatar-info">
+      <span class="dt-avatar-name">{{message.name}}</span>
+      <span class="f-12" [innerHTML]="message.message"></span>
+    </span>
+    <!-- /avatar info -->
+  </a>
+</div>
+<!-- /search result-->

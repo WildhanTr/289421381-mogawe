@@ -1,0 +1,106 @@
+<div class="dt-page__header">
+    <gx-breadcrumbs displayAs="nav" class="mb-0" [data]="breadcrumb"></gx-breadcrumbs>
+</div>
+
+<form (ngSubmit)="loadQuestionnaire()" #searchTableForm="ngForm" class="form-inline mb-2"
+    style="justify-content: flex-end;">
+    <div class="form-group mr-2" style="flex:1">
+        <label for="project-list-search" class="sr-only">Search</label>
+        <input [(ngModel)]="query" type="text" class="form-control p-2 search-control" name="project-list-search"
+            id="project-list-search" placeholder="Search Form">
+        <button type="submit" class="btn btn-primary btn-sm ml-2 p-2" style="width: 44px;" ngbTooltip="Search">
+            &nbsp;<i class="fas fa-search"></i>&nbsp;
+        </button>
+        <button (click)="filterQuestionnaire()" class="btn btn-primary btn-sm ml-2 p-2 text-white search-control" style="width: 44px;" ngbTooltip="Filter Questionnaire">
+            <i class="fa fa-filter"></i>
+        </button>
+    </div>
+    <div class="ml-5" *ngIf="isLoading">
+        <div class="spinner-grow text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+</form>
+
+<div class="row p-2">
+    <div class="card" style="width: 18rem;">
+        <a href="javascript:void(0)" (click)="createQuestionnaire()" style="height: 80%;">
+            <img class="card-img-top" style="margin-top: 10%;" src="assets/images/add-questionnaire.png"
+                alt="Card image cap">
+        </a>
+    </div>
+    <div *ngFor="let questionnaire of questionnaires; let i = index;" class="card" style="width: 18rem;">
+        <a [routerLink]="['/questionnaire/form',questionnaire.uuid]" style="height: 70%;">
+            <img class="card-img-top"
+                src="assets/images/logo_vertical.png"
+                alt="Card image cap">
+        </a>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12">
+                    <p class="card-text">
+                        {{ questionnaire.name }}
+                    </p>
+                </div>
+                <div class="col-9">
+                    <p class="card-text">
+                        <gx-icon name="date-time-picker"></gx-icon>&nbsp;27/08/2020
+                    </p>
+                </div>
+                <div class="col-3" ngbDropdown>
+                    <a href="javascript:void(0)" class="option" ngbDropdownToggle>
+                        <gx-icon name="vertical-more"></gx-icon>
+                    </a>
+                    <div ngbDropdownMenu>
+                        <a class="dropdown-item" href="javascript:void(0)">
+                            <gx-icon name="star-fill" class="mr-2 mr-sm-1"></gx-icon>
+                            Favorite
+                        </a>
+                        <a class="dropdown-item" href="javascript:void(0)">
+                            <gx-icon name="forward" class="mr-2 mr-sm-1"></gx-icon>
+                            Share
+                        </a>
+                        <a class="dropdown-item" href="javascript:void(0)">
+                            <gx-icon name="forms-basic" class="mr-2 mr-sm-1"></gx-icon>
+                            Copy
+                        </a>
+                        <a class="dropdown-item" (click)="deleteQuestionnaire(questionnaire.uuid)"
+                            href="javascript:void(0)">
+                            <gx-icon name="trash-filled" class="mr-2 mr-sm-1"></gx-icon>
+                            Delete
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-6 mt-5">
+        <div class="form-group form-row">
+            <label class="col-xl-2 col-form-label" style="padding: 10px 0px 0px 20px !important;">Number of Rows</label>
+            <div class="col-xl-2">
+                <div class="custom-control custom-checkbox" style="padding-left: 0 !important; width: 70% !important;">
+                    <select class="form-control search-control" name="project-list-offset" id="project-list-offset"
+                        [(ngModel)]="pageOffset" (change)="loadQuestionnaire()" style="font-size: 10px;">
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="50">50</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 text-right mt-5">
+        <ngb-pagination class="d-flex justify-content-end" [maxSize]="maxPageSize" [pageSize]="pageOffset"
+            [collectionSize]="rowCount" [(page)]="page" (pageChange)="page = $event; loadQuestionnaire()">
+        </ngb-pagination>
+    </div>
+</div>

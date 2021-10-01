@@ -1,0 +1,146 @@
+a {
+  color: #757575 !important;
+}
+
+a:hover{
+  color: #4D7DB3 !important;
+}
+body{
+    overflow-y: auto !important;
+}
+
+tr:hover{
+  background-color: #F5F5F8;
+}
+
+.collapsed {
+  width: 100% !important;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: transparent;
+  }
+
+  .scrollQuestionList {
+      overflow-y: auto;
+  }
+
+  .scrollPreview {
+    overflow-y: scroll;
+}
+
+  .sectionList {
+    padding : 0 !important;
+  }
+
+  .container-preview {
+    width: 31%;
+    left: 28%;
+    position: relative;
+    text-align: center;
+    color: white;
+  }
+
+  .container-preview .imagePhone {
+    width: 150%;
+  }
+  /* Centered text */
+  .centered-preview {
+    position: absolute;
+    color: black;
+    width: 100%;
+    height: 420px;
+    top: 55%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+  }
+
+  .labelSectionPreview {
+    position: absolute;
+    color: black;
+    width: 100%;
+    height: 15px;
+    top: 11%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+  }
+
+  .test {
+    margin-bottom: 70%;
+  }
+
+  .example-list {
+    width: 500px;
+    max-width: 100%;
+    border: solid 1px #ccc;
+    min-height: 60px;
+    display: block;
+    background: white;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+ tr {
+    color: rgba(0, 0, 0, 0.87); 
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    cursor: move;
+    background: white;
+    font-size: 14px;
+  }
+  
+  .cdk-drag-preview {
+    color: #4D7DB3 !important;
+  }
+
+  .example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.example-headers-align .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+
+.example-radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+}
+
+.example-radio-button {
+  margin: 5px;
+  
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element {
+  opacity: 0.03 !important;
+  background-color: #005691!important;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: #005691;
+}

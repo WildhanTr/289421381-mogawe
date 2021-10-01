@@ -1,0 +1,128 @@
+
+  
+  .card-body {
+      padding: 1em !important;
+  }
+  
+  .search-control {
+  height:28px !important;
+  } 
+  
+  input.search-control {
+  width: 100%;
+  }
+
+  .roomNameClass {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-bottom: 5px;
+}
+
+  .msg_card_body{
+    overflow-y: auto;
+}
+
+.msg_cotainer{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 10px;
+    border-radius: 25px;
+    background-color: #4D7DB3;
+    color: white;
+    padding: 10px;
+    position: relative;
+}   
+
+.img_cont_msg{
+    height: 40px;
+    width: 40px;
+}
+
+
+.msg_cotainer_send{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 10px;
+    border-radius: 25px;
+    background-color: #4D7DB3;
+    color: white;
+    padding: 10px;
+    position: relative;
+}
+
+
+.msg_time{
+    position: absolute;
+    left: 0;
+    bottom: -15px;
+    color: #757575;
+    width: 400px;
+    font-size: 10px;
+}
+.msg_time_send{
+    position: absolute;
+    right:0;
+    bottom: -15px;
+    color: #757575;
+    width: 400px;
+    text-align: right;
+    font-size: 10px;
+}
+
+.user_img_msg{
+    height: 40px;
+    width: 40px;
+    border:1.5px solid #f5f6fa;
+
+}
+  
+
+.attach_btn{
+	border-radius: 15px 0 0 15px !important;
+	background-color: white !important;
+			border:0 !important;
+			color: #4D7DB3 !important;
+			cursor: pointer;
+        }
+        
+
+		.type_msg{
+			background-color: white !important;
+			border:0 !important;
+			color:#757575 !important;
+			height: 60px !important;
+			overflow-y: auto;
+		}
+			.type_msg:focus{
+		     box-shadow:none !important;
+           outline:0px !important;
+        }
+        
+
+		.send_btn{
+            border-radius: 0 15px 15px 0 !important;
+            background-color: white !important;
+                    border:0 !important;
+                    color: #4D7DB3 !important;
+                    cursor: pointer;
+                }
+
+                .active {
+                  border: 1px solid #4D7DB3;
+                }
+
+                .active .card-text {
+                  color: #4D7DB3 !important;
+                }
+    .limit-char {
+      display: block;
+    width: 220px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    }
+
+

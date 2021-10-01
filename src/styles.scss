@@ -1,0 +1,60 @@
+/* You can add global styles to this file, and also import other style files */
+$flag-icon-css-path: "~flag-icon-css/flags" !default;
+@import "~flag-icon-css/sass/flag-icon";
+
+// @import "gaxon/scss/main";
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+@import "~@angular/material/theming";
+@include mat-core();
+
+$my-app-primary: mat-palette($mat-indigo);
+$my-app-accent: mat-palette($mat-red, A200, A100, A400);
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
+
+@include angular-material-theme($my-app-theme);
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+  border-color: #4d7db3;
+}
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle {
+  color: #4d7db3;
+  background-color: #4d7db3;
+}
+
+.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+  background-color: #4d7db3;
+}
+
+th[sortable] {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+th[sortable].desc:before,
+th[sortable].asc:before {
+  content: "";
+  display: block;
+  background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDQ5MiA0OTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTIiIHhtbDpzcGFjZT0icHJlc2VydmUiIGNsYXNzPSIiPjxnPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgoJPGc+CgkJPHBhdGggZD0iTTQ0Mi42MjcsMTg1LjM4OEwyNjUuMDgzLDcuODQ0QzI2MC4wMTksMi43OCwyNTMuMjYzLDAsMjQ1LjkxNSwwYy03LjIwNCwwLTEzLjk1NiwyLjc4LTE5LjAyLDcuODQ0TDQ5LjM0NywxODUuMzg4ICAgIGMtMTAuNDg4LDEwLjQ5Mi0xMC40ODgsMjcuNTY4LDAsMzguMDUybDE2LjEyLDE2LjEyOGM1LjA2NCw1LjA2LDExLjgyLDcuODQ0LDE5LjAyOCw3Ljg0NGM3LjIwNCwwLDE0LjE5Mi0yLjc4NCwxOS4yNTItNy44NDQgICAgbDEwMy44MDgtMTAzLjU4NHYzMjkuMDg0YzAsMTQuODMyLDExLjYxNiwyNi45MzIsMjYuNDQ4LDI2LjkzMmgyMi44YzE0LjgzMiwwLDI3LjYyNC0xMi4xLDI3LjYyNC0yNi45MzJWMTM0LjgxNmwxMDQuMzk2LDEwNC43NTIgICAgYzUuMDYsNS4wNiwxMS42MzYsNy44NDQsMTguODQ0LDcuODQ0czEzLjg2NC0yLjc4NCwxOC45MzItNy44NDRsMTYuMDcyLTE2LjEyOEM0NTMuMTYzLDIxMi45NTIsNDUzLjEyMywxOTUuODgsNDQyLjYyNywxODUuMzg4eiIgZmlsbD0iI2ZmZmZmZiIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgc3R5bGU9IiIgY2xhc3M9IiI+PC9wYXRoPgoJPC9nPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjxnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjwvZz4KPGcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPC9nPgo8ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8L2c+CjwvZz48L3N2Zz4=")
+      no-repeat;
+  background-size: 13px;
+  width: 15px;
+  height: 15px;
+  float: left;
+  margin-left: -5px;
+}
+
+th[sortable].desc:before {
+  transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+}

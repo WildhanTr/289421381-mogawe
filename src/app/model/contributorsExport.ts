@@ -1,0 +1,52 @@
+import { ContributorTag } from './contributorsTag'
+export class ContributorsExport {
+  uuid: string
+  fullName: string
+  activationCode: string
+  contributorsCode: string
+  joinDate: any
+  active: boolean
+  address: string
+  balance: number
+  balanceLatestUpdated: Date
+  birthdate: number
+  city: string
+  createdBy: string
+  distance: string
+  createdDate: number
+  edu: string
+  email: string
+  gender: string
+  hasPassword: boolean
+  id: number
+  idDevice: string
+  idFacebook: string
+  idGmail: string
+  idTwitter: string
+  idUplineMogawers: string
+  isTermsAgreed: boolean
+  level: number
+  mogawersCode: string
+  new: boolean
+  newPassword: string
+  password: string
+  phone: string
+  phoneActive: boolean
+  points: number
+  profilePicture: string
+  refCode: string
+  suspended: boolean
+  sync: boolean
+  token: string
+  updatedBy: string
+  updatedDate: number
+  completedJob: number
+
+  latitude: number
+  longitude: number
+  lastSeen: any
+  icon: string
+  mogawersTags: string
+  tag: string
+  selected: string
+}

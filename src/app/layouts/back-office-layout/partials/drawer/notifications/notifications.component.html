@@ -1,0 +1,53 @@
+<div class="d-flex align-items-center mb-6">
+  <h5 class="mb-0">Notifications ({{notifications.length}})</h5>
+
+  <div class="ml-auto action-area">
+    <a href="javascript:void(0)">Mark All Read</a>
+
+    <!-- Dropdown -->
+    <span class="ml-3 d-inline-block" ngbDropdown placement="bottom-right">
+        <a class="no-arrow" href="javascript:void(0)" ngbDropdownToggle>
+          <gx-icon name="settings" size="lg" class="text-light-gray"></gx-icon>
+        </a>
+
+        <span ngbDropdownMenu>
+            <a class="dropdown-item" href="javascript:void(0)">
+                <gx-icon name="editors" [fw]="true"></gx-icon>
+                Edit
+            </a>
+            <a class="dropdown-item" href="javascript:void(0)">
+              <gx-icon name="contacts" [fw]="true"></gx-icon>
+                Contact List</a>
+            <a class="dropdown-item" href="javascript:void(0)">
+              <gx-icon name="heart" [fw]="true"></gx-icon>
+                Favourite List
+            </a>
+        </span>
+    </span>
+    <!-- /dropdown -->
+
+  </div>
+</div>
+
+<!-- Media -->
+<a href="javascript:void(0)" class="media" *ngFor="let notification of notifications">
+
+  <!-- Avatar -->
+  <gx-avatar [user]="notification" [charLength]="0" class="mr-3"></gx-avatar>
+  <!-- avatar -->
+
+  <!-- Media Body -->
+  <span class="media-body">
+        <span class="message" [innerHTML]="notification.message"></span>
+        <span class="meta-date">
+          <gx-icon *ngIf="notification.icon.name"
+                   [name]="notification.icon.name"
+                   [ngClass]="notification.icon.color"
+                   [fw]="true" class="mr-1"></gx-icon>
+          {{notification.time}}
+        </span>
+      </span>
+  <!-- /media body -->
+
+</a>
+<!-- /media -->

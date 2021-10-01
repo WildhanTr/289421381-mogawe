@@ -1,0 +1,17 @@
+.mat-stepper-horizontal {
+    margin-top: 8px;
+  }
+  
+.mat-form-field {
+    margin-top: 16px;
+}
+
+::ng-deep .mat-step-header{
+    background: white !important;
+}
+
+.col-3 .card:hover {
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+

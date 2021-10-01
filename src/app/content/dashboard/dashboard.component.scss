@@ -1,0 +1,79 @@
+:host {
+  ::ng-deep .ktd-grid-item-placeholder {
+    background-color: transparent;
+    border: 1px solid #757575;
+    border-style: dotted;
+  }
+
+  ktd-grid-item {
+    cursor: grab;
+
+    &.ktd-grid-item-dragging {
+      cursor: grabbing;
+    }
+  }
+}
+
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #4d7db3;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #4d7db3;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: transparent;
+}
+
+::ng-deep .mat-progress-bar-fill::after {
+  background-color: #4d7db3;
+}
+
+::ng-deep .mat-progress-bar-buffer {
+  background: #e4e8eb;
+}
+
+::ng-deep .mat-progress-bar {
+  border-radius: 2px;
+}
+
+.errorGaugeChart {
+  color: red;
+  font-size: 12px;
+}
+
+.text-span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.dropdown-toggle:after {
+  display: none;
+}
+.col-3 a:hover {
+  color: #4d7db3 !important;
+}
+
+.drops {
+  color: #757575 !important;
+}
+
+.outer {
+  position: relative;
+  ul.nav {
+    position: absolute;
+    z-index: 1010;
+  }
+}

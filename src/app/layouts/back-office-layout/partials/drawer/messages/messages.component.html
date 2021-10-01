@@ -1,0 +1,64 @@
+<div class="d-flex align-items-center mb-6">
+  <h5 class="mb-0">Messages ({{messages.length}})</h5>
+
+  <div class="ml-auto action-area">
+    <a href="javascript:void(0)">Mark All Read</a>
+
+    <!-- Dropdown -->
+    <span class="ml-3 d-inline-block" ngbDropdown placement="bottom-right">
+        <a class="no-arrow" href="javascript:void(0)" ngbDropdownToggle>
+          <gx-icon name="settings" size="lg" class="text-light-gray"></gx-icon>
+        </a>
+
+        <span ngbDropdownMenu>
+            <a class="dropdown-item" href="javascript:void(0)">
+                <gx-icon name="editors" [fw]="true"></gx-icon>
+                Edit
+            </a>
+            <a class="dropdown-item" href="javascript:void(0)">
+              <gx-icon name="contacts" [fw]="true"></gx-icon>
+                Contact List</a>
+            <a class="dropdown-item" href="javascript:void(0)">
+              <gx-icon name="heart" [fw]="true"></gx-icon>
+                Favourite List
+            </a>
+        </span>
+    </span>
+    <!-- /dropdown -->
+
+  </div>
+</div>
+
+<!-- Media -->
+<a href="javascript:void(0)" class="media" *ngFor="let message of messages; index as i">
+
+  <!-- Avatar -->
+  <gx-avatar [user]="message" [charLength]="0" class="mr-3"></gx-avatar>
+  <!-- avatar -->
+
+  <!-- Media Body -->
+  <span class="media-body text-truncate">
+        <span class="user-name mb-1">{{message.name}}</span>
+        <span class="message text-light-gray text-truncate" [innerHTML]="message.message"></span>
+      </span>
+  <!-- /media body -->
+
+  <span class="action-area h-100 min-w-80 text-right">
+    <span class="meta-date mb-1">{{message.time}}</span>
+
+    <ng-template #tipContent>{{message.read ? 'Mark as read' : 'Mark as unread'}}</ng-template>
+
+    <!-- Toggle Button -->
+      <span class="toggle-button"
+            data-placement="left"
+            [ngClass]="{'active':message.read}"
+            [ngbTooltip]="tipContent"
+            (click)="message.read = !message.read; $event.stopPropagation()">
+        <span class="show"><gx-icon name="dot-o" [fw]="true" class="f-10 text-light-gray"></gx-icon></span>
+        <span class="hide"><gx-icon name="dot" [fw]="true" class="f-10 text-light-gray"></gx-icon></span>
+      </span>
+    <!-- /toggle button -->
+    </span>
+
+</a>
+<!-- /media -->

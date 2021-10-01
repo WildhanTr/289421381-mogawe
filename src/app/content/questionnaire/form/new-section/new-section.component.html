@@ -1,0 +1,45 @@
+<mat-dialog-content>
+    <div class="row">
+        <div class="col-3">
+            <button mat-dialog-close class="btn btn-sm btn-primary">
+                <i class="fas fa-arrow-circle-left"></i>
+            </button>
+        </div>
+        <div class="col-6">
+            <h3 class="text-center">Section</h3>
+        </div>
+        <div class="col-3 text-right">
+            <button (click)="showDeleteSectionConfirm(section.uuid)" class="btn btn-sm btn-primary">
+                <i class="fa fa-trash"></i>
+            </button>
+        </div>
+    </div>
+    <hr>
+    <div class="col-12" style="margin-top:0; padding: 0px 0 24px 0;">
+        <div class="row">
+            <form class="col-12" action="saveSection()">
+                <div class="form-group">
+                    <label for="name">Section Name</label>
+                    <input [(ngModel)]="section.name" name="name" type="text" class="form-control" id="name"
+                        placeholder="Section Name" [formControl]="sectionName" (keyup.enter)="saveSection()">
+                </div>
+                <div class="form-group">
+                    <label for="actionRules">Action Rules</label>
+                    <textarea [(ngModel)]="section.actionRules" name="actionRules" rows="3" type="text" class="form-control" id="actionRules"
+                        placeholder="Action Rules" [formControl]="actionRules" (keyup.enter)="saveSection()"></textarea>
+                </div>
+                <div class="flex-d mt-2" style="text-align: right;">
+                    <button style="width: 30%;" class="btn btn-primary mr-2 p-2" (click)="saveSection()">Save</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</mat-dialog-content>
+
+<swal #deleteSwalSection title="Are you sure ?" text="Are you sure to delete this section?" type="warning"
+    confirmButtonClass="btn btn-success ml-1" cancelButtonClass="btn btn-danger mr-1" confirmButtonText="Yes"
+    cancelButtonText="No" [buttonsStyling]="false" [showCancelButton]="true" [focusCancel]="true"
+    [reverseButtons]="true" (confirm)="deleteSectionConfirm()" (cancel)="deleteSectionCancel()">
+</swal>
+<swal #deleteConfirmSwalSection title="Success!" text="Deleted !" type="success" timer="2000">

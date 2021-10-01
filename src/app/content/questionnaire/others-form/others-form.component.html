@@ -1,0 +1,103 @@
+<mat-dialog-content>
+    <div class="row">
+        <div class="col-3">
+            <button mat-dialog-close class="btn btn-sm btn-primary">
+                <i class="fas fa-arrow-circle-left"></i>
+            </button>
+        </div>
+        <div class="col-6">
+            <h3 class="text-center">Form List</h3>
+        </div>
+    </div>
+    <hr>
+    <div class="row" style="margin: 3%;">
+        <div class="col-12">
+            <form (ngSubmit)="loadQuestionnaire()" #searchTableForm="ngForm" class="form-inline mb-3"
+                style="justify-content: flex-end;">
+                <div class="form-group mr-2" style="flex:1">
+                    <label for="project-list-search" class="sr-only">Search</label>
+                    <input [(ngModel)]="query" type="text" class="form-control search-control p-2" name="project-list-search"
+                        id="project-list-search" placeholder="Name">
+                    <button type="submit" class="btn btn-primary btn-sm ml-2 p-2 search-control">
+                        &nbsp;&nbsp;<i class="fa fa-search"></i>&nbsp;&nbsp;
+                    </button>
+                </div>
+                <div *ngIf="isLoading" class="spinner-border text-primary mr-4 p-2" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <div class="form-group ml-2">
+                    <label class="col-form-label text-sm-right mr-2" for="project-list-offset">Show</label>
+                    <div>
+                        <select class="form-control search-control p-1" name="project-list-offset" id="project-list-offset"
+                            [(ngModel)]="pageOffset" (change)="loadQuestionnaire()">
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                            <option value="30">30</option>
+                            <option value="50">50</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group ml-2 search-control">
+                    <span>Entries from</span>
+                    <span class="ml-1" style="color: #eb2128;">{{ rowCount }}</span>
+                </div>
+            </form>
+        </div>
+        <div class="card" style="width: 18rem;">
+            <a href="javascript:void(0)" (click)="createQuestionnaire()"  style="height: 80%;">
+                <img class="card-img-top" style="margin-top: 10%;" src="assets/images/add-questionnaire.png"
+                    alt="Card image cap">
+            </a>
+        </div>
+        <div *ngFor="let questionnaire of questionnaires; let i = index;" class="card" style="width: 18rem;">
+            <a (click)="goToQuestionnaire(questionnaire.uuid)" mat-dialog-close style="height: 70%;">
+                <img class="card-img-top p-5"
+                    src="assets/images/logo_vertical.png"
+                    alt="Card image cap">
+            </a>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <p class="card-text">
+                            {{ questionnaire.name }}
+                        </p>
+                    </div>
+                    <div class="col-9">
+                        <p class="card-text">
+                            <gx-icon name="date-time-picker"></gx-icon>&nbsp;27/08/2020
+                        </p>
+                    </div>
+                    <div class="col-3" ngbDropdown>
+                        <a href="javascript:void(0)" class="option" ngbDropdownToggle>
+                            <gx-icon name="vertical-more"></gx-icon>
+                        </a>
+                        <div ngbDropdownMenu>
+                            <a class="dropdown-item" href="javascript:void(0)">
+                                <gx-icon name="star-fill" class="mr-2 mr-sm-1"></gx-icon>
+                                Favorite
+                            </a>
+                            <a class="dropdown-item" href="javascript:void(0)">
+                                <gx-icon name="forward" class="mr-2 mr-sm-1"></gx-icon>
+                                Share
+                            </a>
+                            <a class="dropdown-item" href="javascript:void(0)">
+                                <gx-icon name="forms-basic" class="mr-2 mr-sm-1"></gx-icon>
+                                Copy
+                            </a>
+                            <a class="dropdown-item" (click)="deleteQuestionnaire(questionnaire.uuid)" href="javascript:void(0)">
+                                <gx-icon name="trash-filled" class="mr-2 mr-sm-1"></gx-icon>
+                                Delete
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <ngb-pagination class="d-flex justify-content-end mt-5" style="margin-right: 15px;" [maxSize]="maxPageSize"
+                [pageSize]="pageOffset" [collectionSize]="rowCount" [(page)]="page"
+                (pageChange)="page = $event; loadQuestionnaire()">
+            </ngb-pagination>
+        </div>
+    </div>
+</mat-dialog-content>

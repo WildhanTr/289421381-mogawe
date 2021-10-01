@@ -1,0 +1,87 @@
+<!-- Sidebar Header -->
+<div class="dt-sidebar__header">
+  <!-- Brand -->
+  <div class="dt-brand">
+
+    <!-- Brand logo -->
+    <span class="dt-brand__logo p-5">
+      <a class="dt-brand__logo-link text-center" href="/">
+        <img *ngIf="currentUser.clientLogoUrl != null" [src]="currentUser.clientLogoUrl" alt="Drift"
+          style="width: 100%;">
+        <img *ngIf="currentUser.clientLogoUrl == null" class="dt-brand__logo-img" src="assets/images/logo.png"
+          alt="Drift">
+        <img *ngIf="currentUser.clientLogoUrl == null" class="dt-brand__logo-symbol"
+          src="assets/images/logo_vertical.png" alt="Drift">
+      </a>
+    </span>
+    <!-- /brand logo -->
+
+  </div>
+  <!-- /brand -->
+</div>
+<!-- /sidebar header -->
+
+<div class="dt-sidebar__container">
+
+  <!-- Sidebar Notification -->
+  <div class="dt-sidebar__notification" style="margin-bottom: -10%;">
+    <!-- Dropdown -->
+    <div class="mb-6" ngbDropdown placement="bottom-right">
+
+      <!-- Dropdown Link -->
+      <a href="javascript:void(0)" class="dt-avatar-wrapper text-white" ngbDropdownToggle>
+        <gx-avatar [user]="currentUser"></gx-avatar>
+        <div style="margin-left: 12px;">
+          <div>
+            <span class="dt-avatar-info">
+              <span class="dt-avatar-name">{{ currentUser.fullName }}</span>
+              <span class="dt-avatar-email" style="font-size: 12px !important; margin-top: 3px; display: block;width: 146px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{
+                currentUser.email }}</span>
+            </span>
+          </div>
+        </div>
+      </a>
+      <!-- /dropdown link -->
+
+      <!-- Dropdown Option -->
+      <div ngbDropdownMenu>
+
+        <!-- <a class="dropdown-item" href="#">
+          <gx-icon name="users2" class="mr-2 mr-sm-1"></gx-icon>
+           Profile
+        </a> -->
+        <a class="dropdown-item" href="#logout" (click)="onLogout($event)">
+          <i name="editors" class="mr-2 mr-sm-1 fas fa-sign-out-alt"></i>
+          Logout
+        </a>
+      </div>
+      <!-- /dropdown option -->
+
+    </div>
+    <!-- /dropdown -->
+
+    <!-- <ul class="dt-list dt-list-xl">
+      <li class="dt-list__item">
+        <a href="javascript:void(0)" class="dt-list__link" [ngClass]="{'active':activeMenu == 'search'}"
+          (click)="onClickMenu($event, 'search')">
+          <gx-icon name="search" size="1x"></gx-icon>
+        </a>
+      </li>
+      <li class="dt-list__item">
+        <a href="javascript:void(0)" class="dt-list__link" [ngClass]="{'active':activeMenu == 'notifications'}"
+          (click)="onClickMenu($event, 'notifications')">
+          <gx-icon name="notification2" size="1x"></gx-icon>
+        </a>
+      </li>
+      <li class="dt-list__item">
+        <a href="javascript:void(0)" class="dt-list__link" [ngClass]="{'active':activeMenu == 'messages'}"
+          (click)="onClickMenu($event, 'messages')">
+          <gx-icon name="message" size="1x"></gx-icon>
+        </a>
+      </li>
+    </ul> -->
+  </div>
+  <!-- /sidebar notification -->
+
+  <app-navigation class="dt-side-nav" layout="vertical"></app-navigation>
+</div>

@@ -1,0 +1,92 @@
+<!-- Module Drawer Inner -->
+<div class="dt-drawer position-left" id="dt-notification-drawer" [ngClass]="{'open': drawer.isOpen}">
+
+  <div class="p-6">
+    <a href="javascript:void(0)" class="d-inline-block" (click)="closeDrawer($event)">
+      <gx-icon name="arrow-long-left" size="2x" class="mr-4"></gx-icon>
+      <span class="align-middle">Back</span>
+    </a>
+  </div>
+
+  <!-- Actionable Drawer -->
+  <div class="dt-actionable-drawer">
+
+    <!-- Menu Bar -->
+    <div class="dt-action-bar">
+
+      <!-- Action Menu -->
+      <ul class="dt-action-nav">
+
+        <!-- Menu Item -->
+        <li class="dt-action-nav__item" [ngClass]="{'active':activeMenu == 'notifications'}">
+          <a href="javascript:void(0)"
+             class="dt-action-nav__link"
+             (click)="onSelectMenu($event, 'notifications')">
+            <gx-icon name="notification2" [fw]="true"></gx-icon>
+          </a>
+        </li>
+        <!-- /menu item -->
+
+        <!-- Menu Item -->
+        <li class="dt-action-nav__item" [ngClass]="{'active':activeMenu == 'messages'}">
+          <a href="javascript:void(0)"
+             class="dt-action-nav__link"
+             (click)="onSelectMenu($event, 'messages')">
+            <gx-icon name="message" [fw]="true"></gx-icon>
+          </a>
+        </li>
+        <!-- /menu item -->
+
+        <!-- Menu Item -->
+        <li class="dt-action-nav__item" [ngClass]="{'active':activeMenu == 'search'}">
+          <a href="javascript:void(0)"
+             class="dt-action-nav__link"
+             (click)="onSelectMenu($event, 'search')">
+            <gx-icon name="search" size="xl"></gx-icon>
+          </a>
+        </li>
+        <!-- /menu item -->
+
+      </ul>
+      <!-- /action menu -->
+
+    </div>
+    <!-- /menu bar -->
+
+    <!-- Drawer Content Area -->
+    <div class="dt-action-content-wrapper">
+
+      <gx-loader [ngClass]="{'active':showLoader}"></gx-loader>
+
+      <div perfectScrollbar
+           [disabled]="!settings.customScrollbars"
+           class="dt-action-content fade position-relative"
+           [ngClass]="{'show':!showLoader && activeMenu == 'search'}">
+        <drawer-search></drawer-search>
+      </div>
+
+      <div perfectScrollbar
+           [disabled]="!settings.customScrollbars"
+           class="dt-action-content fade position-relative"
+           [ngClass]="{'show':!showLoader && activeMenu == 'notifications'}">
+        <drawer-notifications></drawer-notifications>
+      </div>
+
+      <div perfectScrollbar
+           [disabled]="!settings.customScrollbars"
+           class="dt-action-content fade position-relative"
+           [ngClass]="{'show':!showLoader && activeMenu == 'messages'}">
+        <drawer-messages></drawer-messages>
+
+      </div>
+
+    </div>
+    <!-- /drawer content area -->
+
+  </div>
+  <!-- /actionable drawer -->
+
+</div>
+<!-- /module drawer inner -->
+
+<div class="dt-backdrop" *ngIf="drawer.isOpen" (click)="closeDrawer($event)"></div>

@@ -1,0 +1,65 @@
+<div *ngIf="isRegisterForm" class="dt-login__content-wrapper">
+    <auth-header title="MoGawe" desc="MoGawe for business"></auth-header>
+    <div class="dt-login__content">
+        <div class="dt-login__content-inner">
+            <form (ngSubmit)="onSubmitSignup()" #signUpForm="ngForm">
+                <div class="form-group">
+                    <label class="sr-only" for="company">Company name</label>
+                    <input type="text" class="form-control" id="company" aria-describedby="company" placeholder="Company name" [formControl]="company">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="fullName">Name</label>
+                    <input type="text" class="form-control" id="fullName" aria-describedby="fullName" placeholder="Name" [formControl]="fullName">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="email">Email address</label>
+                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" [formControl]="email">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="phone">Mobile phone</label>
+                    <input type="text" class="form-control" id="phone" aria-describedby="phone" placeholder="Mobile phone" [formControl]="phone">
+                </div>
+
+                <div class="form-group">
+                    <label class="sr-only" for="password">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Password" [formControl]="password">
+                </div>
+                <div class="form-group">
+                    <button *ngIf="!isLoading" type="submit" class="btn btn-primary text-uppercase btn-sm"><gx-icon name="signup-page" size="m"></gx-icon> Register Your Company</button>
+                    <div *ngIf="isLoading" class="spinner-border text-primary p-2" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <br>
+                    <br>
+                    <a href="javascript:void(0)" routerLink="/signin" style="color: #757575;" routerLink="/signin">Already have account ?</a>
+                    <!-- <a *ngIf="!isLoading"  class="btn btn-secondary text-uppercase btn-sm ml-3"><gx-icon name="login" size="m"></gx-icon> Login</a> -->
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="isActivationForm" class="dt-login__content-wrapper">
+    <auth-header title="MoGawe" desc="One Step to Active Your Account."></auth-header>
+    <div class="dt-login__content">
+        <div class="dt-login__content-inner">
+            <form (ngSubmit)="onActivationCodeSubmit()">
+                <label>We have sent a Code to your email</label>
+                <div class="form-group">
+                    <label class="sr-only" for="company">Activation Code</label>
+                    <input type="text" class="form-control" name="code" id="activation-code" aria-describedby="activation-code" placeholder="Code" [formControl]="code">
+                </div>
+                <div class="form-group">
+                    <a *ngIf="timeLeft != 0" class="btn btn-secondary text-uppercase btn-sm text-white">
+                        <gx-icon name="mail" size="m"></gx-icon>&nbsp;&nbsp;{{timeLeft}}</a>
+                    <a *ngIf="timeLeft == 0" (click)="sendEmailActivation(registration.email)" class="btn btn-secondary text-uppercase btn-sm text-white">
+                        <gx-icon name="mail" size="m"></gx-icon>&nbsp;&nbsp;Send Code Again</a>
+                    <button type="submit" class="btn btn-primary text-uppercase btn-sm ml-3"><gx-icon name="signup-page" size="m"></gx-icon>&nbsp;&nbsp;Submit</button>
+                    <br>
+                    <br>
+                    <a href="javascript:void(0)" style="color: #757575;" routerLink="/signin">Already have account ?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

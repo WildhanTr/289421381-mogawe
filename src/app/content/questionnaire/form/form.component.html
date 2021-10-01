@@ -1,0 +1,380 @@
+<div class="dt-page__header">
+    <gx-breadcrumbs displayAs="nav" class="mb-0" [data]="breadcrumb"></gx-breadcrumbs>
+</div>
+
+<form (ngSubmit)="saveQuestionnaire()" #formIdentity="ngForm">
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group" *ngIf="!loadingQuestionnaire">
+                    <label for="email-1">Form Name</label>
+                    <input type="text" name="name" [(ngModel)]="questionnaire.name" [formControl]="nameQuestionnaire"
+                        (keyup.enter)="saveQuestionnaire()" class="form-control" id="email-1"
+                        aria-describedby="emailHelp" placeholder="Input your Form name here...">
+                </div>
+                <div class="ml-5" *ngIf="loadingQuestionnaire">
+                    <div class="spinner-grow text-primary" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-primary" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-primary" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <mat-slide-toggle class="mb-5" [color]="colorToogle" name="preview" [(ngModel)]="previewActive"
+                    style="margin: 30px 30px 30px 0px !important;">Preview
+                </mat-slide-toggle>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="col-lg-12">
+    <div class="row">
+        <div class="col-lg-6 sectionList">
+            <div class="col-12">
+                <a *ngIf="!loadingQuestionnaire" href="javascript:void(0)" (click)="newSection(uuidQuestionnaire)"
+                    class="btn btn-primary btn-sm" style="color: white !important;">
+                    <gx-icon name="send-new" size="l"></gx-icon>&nbsp;&nbsp;New Section
+                </a>
+                <a *ngIf="!loadingQuestionnaire" href="javascript:void(0)" (click)="othersForm()"
+                    class="btn btn-secondary btn-sm ml-3" style="color: white !important;">
+                    <gx-icon name="folder-o" size="l"></gx-icon>&nbsp;&nbsp;Open Form
+                </a>
+                <div *ngIf="loadingSections" class="spinner-border text-primary ml-5" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <div *ngIf="changeSort" class="spinner-border text-primary ml-5" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <div *ngIf="saveFactLoading" class="spinner-border text-primary ml-5" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <hr>
+            </div>
+            <div class="col-12 scrollQuestionList" style="height: 67vh !important;">
+                <div cdkDropList (cdkDropListDropped)="dropSection($event)">
+                    <mat-accordion ngxMasonryItem *ngFor="let section of sections; let i = index;"
+                        class="example-headers-align" multi cdkDrag>
+                        <mat-expansion-panel [expanded]="step === i" (opened)="setStep(i)" hideToggle>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    <a style="width: 500px; overflow-x: auto !important;" href="javascript:void(0)"
+                                        (click)="setSection(section)"><i class="fa fa-cog"></i>&nbsp;&nbsp;{{
+                                        section.name }} - {{ section.idSectionDisplay}}</a>
+                                </mat-panel-title>
+                                <mat-panel-description>
+                                    <a href="javascript:void(0)"></a>
+                                    <a (click)="showDeleteSectionConfirm(section.uuid)" href="javascript:void(0)"
+                                        class="float-right ml-3"><i class="fa fa-trash"></i></a>
+                                </mat-panel-description>
+                            </mat-expansion-panel-header>
+                            <hr>
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 15% !important">ID</th>
+                                            <th style="width: 70% !important">Label</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody cdkDropList (cdkDropListDropped)="dropFact($event, section.facts)">
+                                        <tr *ngFor="let fact of section.facts" cdkDrag>
+                                            <td>
+                                                <a href="javascript:void(0)" (click)="getFact(fact.uuid)"
+                                                    style="color: #757575;">
+                                                    {{ fact.idFactDisplay }}
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="javascript:void(0)" (click)="getFact(fact.uuid)"
+                                                    style="color: #757575;">
+                                                    {{ fact.label }}
+                                                </a>
+                                            </td>
+                                            <td class="text-center">
+                                                <a href="javascript:void(0)" (click)="getFact(fact.uuid)"
+                                                    class="mr-5"><i class="fa fa-arrow-alt-circle-right"></i></a>
+                                                <a (click)="showDeleteFactConfirm(fact.uuid)"
+                                                    href="javascript:void(0)"><i class="fa fa-trash"></i></a>
+                                            </td>
+                                            <img *cdkDragPreview src="assets/images/drag.ico"
+                                                style="width: 30px;height: 30px;">
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <hr>
+                                <a href="javascript:void(0)" (click)="newFact(section.uuid)"
+                                    class="btn btn-primary btn-sm" style="color: white !important;">
+                                    <gx-icon name="addnew" size="l"></gx-icon>&nbsp;&nbsp;New Fact
+                                </a>
+                            </div>
+                        </mat-expansion-panel>
+                        <br>
+                    </mat-accordion>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div ngxMasonryItem class="text-center" *ngIf="previewActive">
+                <bs-card style="height: 70vh !important;">
+                    <bs-card-header class="h4">
+                        <gx-icon name="eye" size="l"></gx-icon>&nbsp;&nbsp;Preview
+                    </bs-card-header>
+                    <div class="container-preview">
+                        <img src="assets/images/previewForm.png" alt="Snow" class="imagePhone">
+                        <div class="labelSectionPreview">
+                            {{sectionsPreview.name}}
+                        </div>
+                        <div class="centered-preview scrollPreview">
+                            <div class="test">
+                                <!-- <label style="margin-bottom: 15px;"><b>{{ section.name }}</b></label> <br> -->
+                                <div *ngFor="let fact of sectionsPreview.facts; let i = index;"
+                                    style="margin-bottom: 15px;">
+                                    <div class="card" style="padding: 5%; margin-bottom: 1rem !important;"
+                                        *ngIf="fact.uuidFactType == '82ff4be9-4454-4115-b14b-0bb6c90051d0'">
+                                        <label style="text-align: left;">{{ fact.label }}</label>
+                                        <mat-form-field class="example-full-width">
+                                            <input type="email" matInput>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="card" style="padding: 5%; margin-bottom: 1rem !important;"
+                                        *ngIf="fact.uuidFactType == 'a2059c4a-e4ca-4e11-b9ab-cc4e82492209'">
+                                        <label style="text-align: left;">{{ fact.label }}</label>
+                                        <mat-radio-group aria-labelledby="example-radio-group-label"
+                                            class="example-radio-group" 
+                                            [(ngModel)]="selectionFactPreview">
+                                            <mat-radio-button class="example-radio-button"
+                                                *ngFor="let value of fact.value.split(','); let i = index;">
+                                                {{value}}
+                                            </mat-radio-button>
+                                        </mat-radio-group>
+                                    </div>
+                                    <div class="card" style="padding: 5%; margin-bottom: 1rem !important;"
+                                        *ngIf="fact.uuidFactType == 'b7c1a240-9d0f-4018-99ed-5dab77a79e90'">
+                                        <label style="text-align: left;">{{ fact.label }}</label>
+                                        <p *ngFor="let value of fact.value.split(','); let i = index;" style="text-align: left; margin-bottom: 0;"><mat-checkbox>{{value}}</mat-checkbox></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <a *ngIf="indexSectionPreview > 1" (click)="backSection()"
+                                            class="btn btn-danger btn-sm"
+                                            style="color: white !important; width: 100%;">Previous</a>
+                                    </div>
+                                    <div class="col-6">
+                                        <a *ngIf="sections.length > indexSectionPreview" (click)="nextSection()"
+                                            class="btn btn-primary btn-sm"
+                                            style="color: white !important; width: 100%;">Next</a>
+                                    </div>
+                                </div>
+                                <br>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                    <bs-card-footer>
+                        <div class="text-muted">Questionnaire From MoGawe</div>
+                    </bs-card-footer>
+                </bs-card>
+            </div>
+            <div ngxMasonryItem *ngIf="!previewActive">
+                <bs-card style="height: 65vh !important; overflow: auto;">
+                    <bs-card-header class="h4">
+                        <gx-icon name="filter-new" size="l"></gx-icon>&nbsp;&nbsp;Properties
+                    </bs-card-header>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="label">Type</span>
+                                </div>
+                                <select [(ngModel)]="saveFact.uuidFactType" class="form-control" id="type"
+                                    name="uuidFactType">
+                                    <option [ngValue]="undefined" disabled selected> Please select one type</option>
+                                    <option *ngFor="let type of factType" value="{{ type.uuid }}">{{ type.description }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="label">Label</span>
+                                </div>
+                                <input type="text" class="form-control" id="label" placeholder="Label"
+                                    aria-describedby="label" [(ngModel)]="saveFact.label"
+                                    (keyup.enter)="saveQuestionnaire()">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="hintName">Hint Name</span>
+                                </div>
+                                <input type="text" class="form-control" id="hintName" placeholder="Hint Name"
+                                    aria-describedby="hintName" [(ngModel)]="saveFact.hintName"
+                                    (keyup.enter)="saveQuestionnaire()">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12"
+                        *ngIf="mediaFact.indexOf(saveFact.uuidFactType) > -1 || selectionFact.indexOf(saveFact.uuidFactType) > -1">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" style="align-items: flex-start;"
+                                        id="value">Value</span>
+                                </div>
+                                <input *ngIf="mediaFact.indexOf(saveFact.uuidFactType) > -1" type="text"
+                                    class="form-control" id="value" name="value" placeholder="Value"
+                                    aria-describedby="value" [(ngModel)]="saveFact.value">
+                                <div *ngIf="selectionFact.indexOf(saveFact.uuidFactType) > -1" style="flex: 1;">
+                                    <ul class="list_value_array" cdkDropList
+                                        (cdkDropListDropped)="dropValueArray(saveFact.valueArray,$event)">
+                                        <li class="mb-2" *ngFor="let fa of saveFact.valueArray; let fi = index" cdkDrag>
+                                            <div style="display: flex;">
+                                                <div style="flex: 1;">
+
+                                                    <!-- {{ fa }} -->
+                                                    <input type="text" class="form-control form-control-sm"
+                                                        name="factvalue{{fi}}" id="factvalue{{fi}}" placeholder="Label"
+                                                        [(ngModel)]="fa.value">
+                                                    <!-- {{ fa }} -->
+                                                </div>
+                                                <div style="
+                                                        display: flex;
+                                                        align-items: center;
+                                                        margin-left: 4px;">
+                                                    <span (click)="deleteFactValue(saveFact,fi)"
+                                                        style="color: #4D7DB3; cursor: pointer;margin-left: 12px;">
+                                                        <i class="fas fa-trash"></i>
+                                                    </span>
+                                                    <span cdkDragHandle
+                                                        style="color: gray; cursor: grab; margin-left: 12px;">
+                                                        <i class="fas fa-grip-lines"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="mt-4" style="list-style: none;">
+                                            <button class="btn btn-sm btn-primary" style="width: 100%;"
+                                                (click)="newFactValue(saveFact)">
+                                                Tambah
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="actionRules">Action Rules</span>
+                                </div>
+                                <textarea rows="3" type="text" class="form-control" id="actionRules"
+                                    placeholder="Action Rules" aria-describedby="actionRules"
+                                    [(ngModel)]="saveFact.actionRules" (keyup.enter)="saveQuestionnaire()"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="imageUrl">Image</span>
+                                </div>
+                                <input type="text" class="form-control" id="imageUrl" placeholder="Image Url"
+                                    aria-describedby="imageUrl" [(ngModel)]="saveFact.pictureUrl">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="video">Video</span>
+                                </div>
+                                <input type="text" class="form-control" id="videoUrl" placeholder="Video Url"
+                                    aria-describedby="videoUrl" [(ngModel)]="saveFact.videoUrl">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="video">Mandatory</span>
+                                </div>
+                                <diV style="display: flex; align-items:center;padding:0px 24px">
+                                    <mat-slide-toggle class="example-margin" [color]="colorToogle"
+                                        [(ngModel)]="saveFact.isMandatory">
+                                    </mat-slide-toggle>
+                                </diV>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="video">Visible</span>
+                                </div>
+                                <diV style="display: flex; align-items:center;padding:0px 24px">
+                                    <mat-slide-toggle class="example-margin" [color]="colorToogle"
+                                        [(ngModel)]="saveFact.isVisible">
+                                    </mat-slide-toggle>
+                                </diV>
+                            </div>
+                        </div>
+                    </div>
+                    <bs-card-footer>
+                        <div class="text-muted">Questionnaire From MoGawe</div>
+                    </bs-card-footer>
+                </bs-card>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-secondary" style="width: 100%;">
+                            <gx-icon name="circle-remove-o" size="l"></gx-icon>&nbsp;&nbsp;Cancel
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <button (click)="formIdentity.ngSubmit.emit()" [disabled]="!formIdentity.form.valid"
+                            class="btn btn-primary" style="width: 100%;">
+                            <gx-icon name="circle-check-o" size="l"></gx-icon>&nbsp;&nbsp;Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<swal #deleteSwalSection title="Are you sure ?" text="Are you sure to delete this section?" type="warning"
+    confirmButtonClass="btn btn-success ml-1" cancelButtonClass="btn btn-danger mr-1" confirmButtonText="Yes"
+    cancelButtonText="No" [buttonsStyling]="false" [showCancelButton]="true" [focusCancel]="true"
+    [reverseButtons]="true" (confirm)="deleteSectionConfirm()" (cancel)="deleteSectionCancel()">
+</swal>
+<swal #deleteConfirmSwalSection title="Success!" text="Deleted !" type="success" timer="2000">
+
+    <swal #deleteSwalFact title="Are you sure ?" text="Are you sure to delete this fact?" type="warning"
+        confirmButtonClass="btn btn-success ml-1" cancelButtonClass="btn btn-danger mr-1" confirmButtonText="Yes"
+        cancelButtonText="No" [buttonsStyling]="false" [showCancelButton]="true" [focusCancel]="true"
+        [reverseButtons]="true" (confirm)="deleteFactConfirm()" (cancel)="deleteFactCancel()">
+    </swal>
+    <swal #deleteConfirmSwalFact title="Success!" text="Deleted !" type="success" timer="2000">

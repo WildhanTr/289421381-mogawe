@@ -1,0 +1,8 @@
+<img *ngIf="user.profilePicture" class="img-fluid" [src]="user.profilePicture"
+     [ngClass]="avatarClass"
+     alt="{{user.fullName}}">
+
+<ng-container *ngIf="!user.profilePicture && charLength == 1">{{user.fullName | oneLetter}}</ng-container>
+<ng-container *ngIf="!user.profilePicture && charLength != 1">
+  <ng-container *ngFor="let word of user.fullName.split(' ')">{{word | oneLetter}}</ng-container>
+</ng-container>

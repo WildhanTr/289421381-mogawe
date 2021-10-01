@@ -1,0 +1,31 @@
+export class ListUser {
+    id: number
+    idClient: number
+    idRole: number
+    uuid: string
+    uuidClient: string
+    company: string
+    uuidRole: string
+    roleName: string
+    idDevice: string
+    fullName: string
+    username: string
+    phone: string
+    email: string
+    region: string
+    title: string
+    profilePicture: string
+    exportXlsDashboard: string
+    code: string
+    activationCode: number
+    newPassword: string
+    isActivate: boolean
+    uuidProject: string
+    userProjects: number
+    createdDate: number
+    lastLogin: string
+    storeName: string
+    storeAddress: string
+    storeLat: string
+    storeLng: string
+}

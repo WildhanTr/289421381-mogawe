@@ -1,0 +1,135 @@
+<mat-dialog-content>
+    <div class="row">
+        <div class="col-3">
+            <button mat-dialog-close class="btn btn-sm btn-primary">
+                <i class="fas fa-arrow-circle-left"></i>
+            </button>
+        </div>
+        <div class="col-6">
+            <h3 class="text-center">Fact</h3>
+        </div>
+    </div>
+    <hr>
+    <div class="col-12" style="margin-top:0; padding: 0px 0 24px 0;">
+        <div class="row">
+            <form class="col-12" action="saveFact()">
+                <div class="form-group">
+                    <label for="type">Type</label>
+                    <select [(ngModel)]="fact.uuidFactType" class="form-control" id="type" name="uuidFactType"
+                        [formControl]="typeFact" (keyup.enter)="saveFact()">
+                        <option [ngValue]="undefined" disabled selected> Please select one type</option>
+                        <option *ngFor="let type of factType" value="{{ type.uuid }}">{{ type.description }}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="label">Label</label>
+                    <input [(ngModel)]="fact.label" name="label" type="text" class="form-control" id="label"
+                        placeholder="Fact Label" [formControl]="labelFact" (keyup.enter)="saveFact()">
+                </div>
+                <div class="form-group">
+                    <label for="hintName">Hint Name</label>
+                    <input [(ngModel)]="fact.hintName" name="hintName" type="text" class="form-control" id="hintName"
+                        placeholder="Hint Name" [formControl]="hintName" (keyup.enter)="saveFact()">
+                </div>
+                <div class="form-group"
+                    *ngIf="mediaFact.indexOf(fact.uuidFactType) > -1 || selectionFact.indexOf(fact.uuidFactType) > -1">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" style="align-items: flex-start;" id="value">Value</span>
+                        </div>
+                        <input *ngIf="mediaFact.indexOf(fact.uuidFactType) > -1" type="text" class="form-control"
+                            id="value" name="value" placeholder="Value" aria-describedby="value"
+                            [(ngModel)]="fact.value">
+                        <div *ngIf="selectionFact.indexOf(fact.uuidFactType) > -1" style="flex: 1;">
+                            <ul class="list_value_array" cdkDropList
+                                (cdkDropListDropped)="dropValueArray(fact.valueArray,$event)">
+                                <li class="mb-2" *ngFor="let fa of fact.valueArray; let fi = index" cdkDrag>
+                                    <div style="display: flex;">
+                                        <div style="flex: 1;">
+
+                                            <!-- {{ fa }} -->
+                                            <input type="text" class="form-control form-control-sm"
+                                                name="factvalue{{fi}}" id="factvalue{{fi}}" placeholder="Label"
+                                                [(ngModel)]="fa.value">
+                                            <!-- {{ fa }} -->
+                                        </div>
+                                        <div style="
+                                                        display: flex;
+                                                        align-items: center;
+                                                        margin-left: 4px;">
+                                            <span (click)="deleteFactValue(fact,fi)"
+                                                style="color: #4D7DB3; cursor: pointer;margin-left: 12px;">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                            <span cdkDragHandle style="color: gray; cursor: grab; margin-left: 12px;">
+                                                <i class="fas fa-grip-lines"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="mt-4" style="list-style: none;">
+                                    <button class="btn btn-sm btn-primary" style="width: 100%;"
+                                        (click)="newFactValue(fact)">
+                                        Tambah
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="actionRules">Action Rules</label>
+                    <textarea [(ngModel)]="fact.actionRules" name="actionRules" type="text" class="form-control"
+                        id="actionRules" placeholder="Action Rules" rows="2" [formControl]="actionRules"
+                        (keyup.enter)="saveFact()"></textarea>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="imageUrl">Image</span>
+                        </div>
+                        <input type="text" name="imageUrl" class="form-control" id="imageUrl" placeholder="Image Url"
+                            aria-describedby="imageUrl" [(ngModel)]="fact.pictureUrl">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="video">Video</span>
+                        </div>
+                        <input type="text" name="videoUrl" class="form-control" id="videoUrl" placeholder="Video Url"
+                            aria-describedby="videoUrl" [(ngModel)]="fact.videoUrl">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="video">Mandatory</span>
+                        </div>
+                        <diV style="display: flex; align-items:center;padding:0px 24px">
+                            <mat-slide-toggle name="isMandatory" class="example-margin" [color]="colorToogle"
+                                [(ngModel)]="fact.isMandatory">
+                            </mat-slide-toggle>
+                        </diV>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="video">Visible</span>
+                        </div>
+                        <diV style="display: flex; align-items:center;padding:0px 24px">
+                            <mat-slide-toggle name="isVisible" class="example-margin" [color]="colorToogle"
+                                [(ngModel)]="fact.isVisible">
+                            </mat-slide-toggle>
+                        </diV>
+                    </div>
+                </div>
+                <div class="flex-d mt-2" style="text-align: right;">
+                    <button style="width: 30%;" class="btn btn-primary mr-2 p-2" (click)="saveFact()">Save</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</mat-dialog-content>

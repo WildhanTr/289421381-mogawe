@@ -1,0 +1,218 @@
+<div class="dt-page__header">
+    <gx-breadcrumbs displayAs="nav" class="mb-0" [data]="breadcrumb"></gx-breadcrumbs>
+</div>
+
+<div class="row d-flex justify-content-center" style="margin-top: 5%">
+    <div class="col-lg-10">
+        <mat-horizontal-stepper [linear]="isLinear" #stepper>
+
+            <mat-step [stepControl]="addJob">
+                <div class="col-lg-12" style="margin-top: 5%;">
+                    <form>
+                        <gx-grid>
+                            <ng-template matStepLabel>Name your Job</ng-template>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="email-1" aria-describedby="emailHelp"
+                                    placeholder="Job Name">
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" id="text-area-1" rows="5"
+                                    placeholder="Job Description"></textarea>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="email-1"
+                                            aria-describedby="emailHelp" placeholder="Job Fee">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="email-1"
+                                            aria-describedby="emailHelp" placeholder="Job Payment">
+                                        <small class="form-text">Each /day/weekly/monthly</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="email-1" aria-describedby="emailHelp"
+                                    placeholder="Job Location/Area">
+                            </div>
+                            <br>
+                            <h4>Training and Tutorial</h4>
+                            <p>A better way to explain your job is through tutorials.<br>
+                                You can add a simple video explainer, images or description text.
+                            </p>
+                            <button type="submit" class="btn btn-primary btn-sm mr-2" (click)="open(content)">
+                                <gx-icon name="circle-add-o" size="l"></gx-icon>&nbsp;&nbsp;Add Tutorial
+                            </button>
+                        </gx-grid>
+                        <div class="form-group text-center">
+                            <button type="submit" style="width: 20%;" class="btn btn-secondary btn-sm mr-2"
+                                (click)="cancelClick()">
+                                <gx-icon name="arrow-long-left" size="l"></gx-icon>&nbsp;&nbsp;Cancel
+                            </button>
+                            <button type="submit" style="width: 20%;" class="btn btn-primary btn-sm" matStepperNext>
+                                <gx-icon name="circle-check-o" size="l"></gx-icon>&nbsp;&nbsp;Next
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </mat-step>
+
+            <mat-step [stepControl]="chooseForm">
+                <div class="col-lg-12" style="margin-top: 5%;">
+                    <gx-grid>
+                        <ng-template matStepLabel>Choose your form</ng-template>
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="card">
+                                    <div class="mt-7 text-center">
+                                        <h4 class="mb-1 mb-sm-0">Form 1</h4>
+                                        <hr>
+                                        <span class="d-block text-light-gray mb-5">This is Form</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="card">
+                                    <div class="mt-7 text-center">
+                                        <h4 class="mb-1 mb-sm-0">Form 2</h4>
+                                        <hr>
+                                        <span class="d-block text-light-gray mb-5">This is Form</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="card">
+                                    <div class="mt-7 text-center">
+                                        <h4 class="mb-1 mb-sm-0">Form 3</h4>
+                                        <hr>
+                                        <span class="d-block text-light-gray mb-5">This is Form</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="card">
+                                    <div class="mt-7 text-center">
+                                        <h4 class="mb-1 mb-sm-0">Form 4</h4>
+                                        <hr>
+                                        <span class="d-block text-light-gray mb-5">This is Form</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="card">
+                                    <div class="mt-7 text-center">
+                                        <h4 class="mb-1 mb-sm-0">Form 5</h4>
+                                        <hr>
+                                        <span class="d-block text-light-gray mb-5">This is Form</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="card">
+                                    <div class="mt-7 text-center">
+                                        <h4 class="mb-1 mb-sm-0">Form 6</h4>
+                                        <hr>
+                                        <span class="d-block text-light-gray mb-5">This is Form</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <a [routerLink]="['/questionnaire/create']">
+                                <div class="card">
+                                    <div class="mt-7 text-center">
+                                        <h4 class="mb-1 mb-sm-0" style="color: #fd5056;">Create Your Own</h4>
+                                        <hr>
+                                        <span class="d-block text-light-gray mb-5">Couldn't find any matching forms
+                                            ?</span>
+                                    </div>
+                                </div>
+                            </a>
+                            </div>
+                        </div>
+                    </gx-grid>
+                    <div class="form-group text-center">
+                        <button type="submit" style="width: 20%;" class="btn btn-secondary btn-sm mr-2"
+                            matStepperPrevious>
+                            <gx-icon name="arrow-long-left" size="l"></gx-icon>&nbsp;&nbsp;Back
+                        </button>
+                        <button type="submit" style="width: 20%;" class="btn btn-primary btn-sm" matStepperNext>
+                            <gx-icon name="circle-check-o" size="l"></gx-icon>&nbsp;&nbsp;Next
+                        </button>
+                    </div>
+                </div>
+            </mat-step>
+
+            <mat-step [stepControl]="finish">
+                <div class="col-lg-12 text-center" style="margin-top: 5%;">
+                    <form>
+                        <gx-grid>
+                            <ng-template matStepLabel>Finish</ng-template>
+                            <h4 class="mb-1 mb-sm-0">Job Name</h4>
+                            <hr>
+                            <span class="d-block text-light-gray mb-5">Are you sure to add this Job ?</span>    
+                        </gx-grid>
+                        <div class="form-group text-center">
+                            <button type="submit" style="width: 20%;" class="btn btn-secondary btn-sm mr-2"
+                                matStepperPrevious>
+                                <gx-icon name="arrow-long-left" size="l"></gx-icon>&nbsp;&nbsp;Back
+                            </button>
+                            <button type="submit" style="width: 20%;" class="btn btn-primary btn-sm" matStepperNext>
+                                <gx-icon name="send" size="l"></gx-icon>&nbsp;&nbsp;Save
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </mat-step>
+
+        </mat-horizontal-stepper>
+    </div>
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header bg-primary">
+        <h5 class="modal-title text-white">
+            <gx-icon name="forms-basic" size="m"></gx-icon>&nbsp;&nbsp;Add Tutorial Form
+        </h5>
+    </div>
+    <div class="modal-body p-10">
+        <form>
+            <div class="form-group">
+                <input type="text" class="form-control" id="email-1" aria-describedby="emailHelp"
+                    placeholder="Tutorial Name">
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" id="text-area-1" rows="10" placeholder="Write something"></textarea>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="email-1" aria-describedby="emailHelp"
+                    placeholder="Video URL">
+            </div>
+            <div class="form-group">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="file-field">
+                    <label class="custom-file-label" for="file-field">Choose file...</label>
+                </div>
+            </div>
+            <div class="row  mt-5">
+                <div class="col-lg-2 mb-3">
+                    <img src="https://static.thenounproject.com/png/417776-200.png" width="100%" height="100%">
+                    <!-- <a class="badge badge-danger text-white mb-2"><i class="fa fa-times-circle"></i></a> -->
+                </div>
+                <div class="col-lg-2 mb-3">
+                    <img src="https://static.thenounproject.com/png/417776-200.png" width="100%" height="100%">
+                    <!-- <a class="badge badge-danger text-white mb-2"><i class="fa fa-times-circle"></i></a> -->
+                </div>
+                <div class="col-lg-2 mb-3">
+                    <img src="https://static.thenounproject.com/png/417776-200.png" width="100%" height="100%">
+                    <!-- <a class="badge badge-danger text-white mb-2"><i class="fa fa-times-circle"></i></a> -->
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="c('Save click')">Save Tutorial</button>
+    </div>
+</ng-template>

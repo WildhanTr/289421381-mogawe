@@ -1,0 +1,47 @@
+a{
+    color: #757575 !important;
+}
+
+.dropdown-toggle:after {
+    display: none;
+}
+.col-3 a:hover{
+    color: #4D7DB3 !important;
+}
+
+p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+.card {
+    margin: 10px;
+}
+
+.card:hover {
+    border: 1px solid #4D7DB3;
+}
+.card-body {
+    padding: 8px 4px 4px 8px !important;
+    border-top: 1px solid #EFEFF3;
+}
+.card-body-create-new {
+    padding: 8px 4px 4px 8px !important;
+}
+
+.card-img-top:hover {
+    height: 100%;
+}
+.card-img-top {
+    height: 100%;
+}
+
+.search-control {
+    height:35px !important;
+} 
+
+input.search-control {
+     width: 250px;
+}
