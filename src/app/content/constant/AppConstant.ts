@@ -103,7 +103,9 @@ export class AppConstant {
 
     // QUESTIONNAIRE
     public static API_QUESTIONAIRE_GET = '/api/questionnaire/get';
+    public static API_QUESTIONAIRE_GET_GALLERY = '/api/questionnaire/gallery/get';
     public static API_QUESTIONAIRE_CREATE = '/api/questionnaire/create';
+    public static API_QUESTIONAIRE_COPY = '/api/questionnaire/copy';
     public static API_QUESTIONAIRE_UPDATE = '/api/questionnaire/update';
     public static API_QUESTIONAIRE_DELETE = '/api/questionnaire/delete';
 

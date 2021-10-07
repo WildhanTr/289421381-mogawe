@@ -1,0 +1,67 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.wrapper{
+  padding: 15px 10px;
+  
+}
+
+/* settingan grid dan flex */
+.flex-center {
+  &-cwh {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+  }
+
+  &-cw {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+
+  &-ch {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+  }
+
+  &-chr {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-end;
+  }
+
+  &-rwh {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+  }
+
+  &-rw {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+  }
+
+  &-rh {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+  }
+}
+
+img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.mt-3-custom{
+  padding-top: 20px;
+  padding-bottom: 20px;
+}

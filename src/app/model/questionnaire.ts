@@ -11,3 +11,23 @@ export class Questionnaire {
      sections: Section[] = []
 
 }
+
+
+export class GalleryFormQuestionnaire {
+  public uuid: string = '';
+  public uuidQuestionnaire: string = '';
+  public questionnaireName: string = '';
+  public iconUrl: string = '';
+}
+
+
+export class TemplateFormEntry {
+  public picName: string = '';
+  public age:number
+  public receiverName: string = '';
+  public prodName: string = '';
+  public prodMerk: string = '';
+  public originAddressShipping: string = '';
+  public destAddressShipping: string = '';
+  public totalWeight: string = '';
+}

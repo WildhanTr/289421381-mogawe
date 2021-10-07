@@ -1,0 +1,30 @@
+<div class="wrapper">
+  <h1 mat-dialog-title>Select Form</h1>
+  <!-- Content -->
+  <div mat-dialog-content>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card h-90 mt-3 mb-3">
+          <div class="flex-center-cwh mt-3-custom mb-3-custom">
+              <a>
+                  <img class=""  src="assets/images/add-questionnaire.png" style="width: 60%;"
+                      alt="Card image cap">
+              </a>
+              <p class="" style="font-weight: 500;font-size: 1em;margin-bottom: 24px; margin-top: 10px;">Blank Form</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" *ngFor="let item of galleryFormQuestionnaire">
+        <div class="card h-90 mt-3 mb-3">
+          <div class="flex-center-cwh mt-3-custom mb-3-custom">
+              <a (click)="openSpecificForm(item)">
+                  <img class=""  src="{{ item.iconUrl }}"
+                      alt="Card image cap" style="margin-top: 10px;">
+              </a>
+              <p class="" style="font-weight: 500;font-size: 1em; margin-bottom: 24px;margin-top: 10px;">{{ item.questionnaireName }} Form</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

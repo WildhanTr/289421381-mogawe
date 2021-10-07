@@ -1,0 +1,43 @@
+<div class="wrapper">
+  <!-- Content -->
+  <div class="content-form">
+    <!-- Section Text -->
+      <div class="section-text">
+        <p class="title-section">{{ titleForm }}</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem temporibus perferendis officia obcaecati enim minima ut impedit vel provident neque quae, soluta eum excepturi voluptatibus natus ex aspernatur veniam sint! Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga qui assumenda dolorum culpa, delectus vitae eaque in dolor neque officiis sequi iusto cumque corrupti adipisci aliquid quae reprehenderit odit vel?</p>
+        <div style="position: fixed;bottom: 70px;">
+          <p>
+            *You can edit this form later
+          </p>
+          <button class="btn btn-primary" style="text-transform: capitalize;" (click)="copyTemplate()">
+            use this template
+          </button>
+        </div>
+      </div>
+    <!-- End of Section Text -->
+     
+    <!-- Section Preview -->
+      <div class="section-preview">
+        <p class="title-section" style="padding-left: 10px;">
+          Preview
+        </p>
+        <div class="container-custom">
+          <div class="row" style="background: #fff;padding-top: 20px;margin-left: 20px;margin-right: 20px;">
+            <div class="col-md-12 justify-content-md-center" *ngFor="let item of listDummyInput">
+              <mat-label>{{ item.label }}</mat-label>
+              <mat-form-field appearance="outline" class="full-width" style="width: 100%">
+                <input
+                    matInput
+                    [type]="item.type"
+                    [placeholder]="item.placeholder"
+                    [(ngModel)]="item.models"
+                />
+              </mat-form-field>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    <!-- End of Section Preview -->
+  </div>
+</div>
