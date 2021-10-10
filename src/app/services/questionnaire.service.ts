@@ -45,6 +45,37 @@ export class QuestionnaireService {
         catchError((e: Response) => this.handleError(e))
       );
   }
+  
+  getGalleryForm(page: number, offset: number) {
+
+    const headers = new HttpHeaders().set("Content-Type", "application/json").set("Token", localStorage.getItem("jwt"));
+    let url = AppConstant.PROJECT_SERVICE_ENDPOINT + AppConstant.API_QUESTIONAIRE_GET_GALLERY + "?";
+    
+    // url += "q=" + (query == null ? "" : query)
+    // url += "&p=" + uuidProject
+    url += "page=" + page
+    url += "&offset=" + offset
+
+    return this.http.get(url,
+      {
+        headers
+      })
+      .pipe(
+        map((response) => {
+          let res = JSON.parse(JSON.stringify(response));
+          if (res.returnValue == '000') {
+            return res;
+          } else if (res.returnValue == '002') {
+            localStorage.removeItem("jwt")
+            this.router.navigate(["/signin"])
+            throw new Error(res.message);
+          } else {
+            throw new Error(res.message);
+          }
+        }),
+        catchError((e: Response) => this.handleError(e))
+      );
+  }
 
   getQuestionnairesDetail(uuidQuestionnaire:string) {
 
@@ -130,6 +161,32 @@ export class QuestionnaireService {
     let url = AppConstant.PROJECT_SERVICE_ENDPOINT + AppConstant.API_QUESTIONAIRE_DELETE + "/" + uuidQuestionnaire;
 
     return this.http.delete(url,
+      {
+        headers
+      })
+      .pipe(
+        map((response) => {
+          let res = JSON.parse(JSON.stringify(response));
+          if (res.returnValue == '000') {
+            return res;
+          } else if (res.returnValue == '002') {
+            localStorage.removeItem("jwt")
+            this.router.navigate(["/signin"])
+            throw new Error(res.message);
+          } else {
+            throw new Error(res.message);
+          }
+        }),
+        catchError((e: Response) => this.handleError(e))
+      );
+  }
+  
+  copyQuestionnaireTemplate(body: any){
+    const headers = new HttpHeaders().set("Content-Type", "application/json").set("Token", localStorage.getItem("jwt"));
+    let url = AppConstant.PROJECT_SERVICE_ENDPOINT + AppConstant.API_QUESTIONAIRE_COPY;
+
+    return this.http.post(url,
+      body,
       {
         headers
       })

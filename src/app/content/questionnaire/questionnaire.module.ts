@@ -16,10 +16,12 @@ import { OthersFormComponent } from './others-form/others-form.component';
 import { FilterQuestionnaireComponent } from './filter-questionnaire/filter-questionnaire.component';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { NewFormComponent } from './form/new-form/new-form.component';
+import { TemplateFormComponent } from './form/template-form/template-form.component';
 
 
 @NgModule({
-  declarations: [QuestionnaireComponent, FormComponent, NewFactComponent, NewSectionComponent, OthersFormComponent, FilterQuestionnaireComponent],
+  declarations: [QuestionnaireComponent, FormComponent, NewFactComponent, NewSectionComponent, OthersFormComponent, FilterQuestionnaireComponent, NewFormComponent, TemplateFormComponent],
   imports: [
     CommonModule,
     QuestionnaireRoutingModule,

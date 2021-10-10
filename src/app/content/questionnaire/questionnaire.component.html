@@ -30,54 +30,25 @@
 
 <div class="row p-2">
     <div class="card" style="width: 18rem;">
-        <a href="javascript:void(0)" (click)="createQuestionnaire()" style="height: 80%;">
-            <img class="card-img-top" style="margin-top: 10%;" src="assets/images/add-questionnaire.png"
-                alt="Card image cap">
-        </a>
+        <div class="flex-center-cwh">
+            <a href="javascript:void(0)" (click)="openFormDialog()" style="height: 75%;">
+                <img class="card-img-top"  src="assets/images/add-questionnaire.png"
+                    alt="Card image cap">
+            </a>
+            <p class="" style="font-weight: 600;font-size: 0.9em;margin-top: 24px;">New Form</p>
+        </div>
     </div>
     <div *ngFor="let questionnaire of questionnaires; let i = index;" class="card" style="width: 18rem;">
-        <a [routerLink]="['/questionnaire/form',questionnaire.uuid]" style="height: 70%;">
-            <img class="card-img-top"
-                src="assets/images/logo_vertical.png"
-                alt="Card image cap">
-        </a>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-12">
-                    <p class="card-text">
-                        {{ questionnaire.name }}
-                    </p>
-                </div>
-                <div class="col-9">
-                    <p class="card-text">
-                        <gx-icon name="date-time-picker"></gx-icon>&nbsp;27/08/2020
-                    </p>
-                </div>
-                <div class="col-3" ngbDropdown>
-                    <a href="javascript:void(0)" class="option" ngbDropdownToggle>
-                        <gx-icon name="vertical-more"></gx-icon>
-                    </a>
-                    <div ngbDropdownMenu>
-                        <a class="dropdown-item" href="javascript:void(0)">
-                            <gx-icon name="star-fill" class="mr-2 mr-sm-1"></gx-icon>
-                            Favorite
-                        </a>
-                        <a class="dropdown-item" href="javascript:void(0)">
-                            <gx-icon name="forward" class="mr-2 mr-sm-1"></gx-icon>
-                            Share
-                        </a>
-                        <a class="dropdown-item" href="javascript:void(0)">
-                            <gx-icon name="forms-basic" class="mr-2 mr-sm-1"></gx-icon>
-                            Copy
-                        </a>
-                        <a class="dropdown-item" (click)="deleteQuestionnaire(questionnaire.uuid)"
-                            href="javascript:void(0)">
-                            <gx-icon name="trash-filled" class="mr-2 mr-sm-1"></gx-icon>
-                            Delete
-                        </a>
-                    </div>
-                </div>
-            </div>
+        <div class="flex-center-cwh">
+            <a [routerLink]="['/questionnaire/form',questionnaire.uuid]" style="height: 60%;position: relative">
+                <img class="card-img-top card-custom"
+                    src="assets/images/logo_vertical.png"
+                    alt="Card image cap">
+            </a>
+            <p class="mt-3" style="font-weight: 600;font-size: 0.85em;">Form Komando Minimarket</p>
+            <p class="text-muted" style="font-size: 0.6em;margin-top: -15px;">
+                Created: 27/08/2020 | Last Opened: today
+            </p>
         </div>
     </div>
 </div>
