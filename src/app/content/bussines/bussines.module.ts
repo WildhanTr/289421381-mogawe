@@ -20,16 +20,18 @@ import { GaugeChartModule } from 'angular-gauge-chart';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { NgbdSortableHeader } from '@app/sortable.directive';
 import { AppConstant } from '../constant/AppConstant';
+import { ContributorFilterComponent } from './contributors/contributor-filters/contributor-filters.component';
 
 @NgModule({
   declarations: [
     ContributorsComponent,
+    ContributorFilterComponent,
     WorkplaceComponent,
     DataComponent,
     ReportComponent,
     ItemsComponent,
     PaymentSetupComponent,
-    NgbdSortableHeader
+    NgbdSortableHeader,
   ],
   imports: [
     CommonModule,

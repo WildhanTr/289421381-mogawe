@@ -1,0 +1,199 @@
+<mat-dialog-content>
+  <mat-horizontal-stepper linear #stepper>
+    <mat-step>
+      <ng-template matStepLabel matStepperIcon="fill">Opsi Filter</ng-template>
+      <div class="row">
+        <div class="col-md-12" align="center">
+          <p class="title">Pilih opsi filter</p>
+          <button
+            mat-button
+            class="
+              btn btn-outline-primary
+              mb-2
+              btn-lg
+              ml-2
+              p-2
+              text-white
+              btn-filter
+            "
+            (click)="nextStep(stepper, 1)"
+          >
+            Proximity
+          </button>
+          <button
+            mat-button
+            class="
+              btn btn-outline-primary
+              mb-2
+              btn-lg
+              ml-2
+              p-2
+              text-white
+              btn-filter
+            "
+            (click)="nextStep(stepper, 2)"
+          >
+            Custom Area
+          </button>
+          <button
+            mat-button
+            class="
+              btn btn-outline-primary
+              mb-2
+              btn-lg
+              ml-2
+              p-2
+              text-white
+              btn-filter
+            "
+            (click)="nextStep(stepper, 3)"
+          >
+            Administrative Area
+          </button>
+        </div>
+      </div>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Setup Filter</ng-template>
+
+        <!-- Proximity -->
+        <div *ngIf="identifier === 1" class="row">
+          <div class="col-md-12">
+            <h5 style="color: #c7bebe; font-weight: 600; font-size: 1.2em">
+              Proximity
+            </h5>
+          </div>
+        </div>
+
+        <!-- Custom -->
+        <div *ngIf="identifier === 2" class="row">
+            <div class="col-md-12">
+                <h5 style="color: #c7bebe; font-weight: 600; font-size: 1.2em">
+                  Custom Area
+                </h5>
+            </div>
+            <div class="col-md-6">
+                <!-- select location -->
+                <p style="color: #000; font-size: 1em;margin-bottom: -2px !important;font-weight: 500;">Lokasi</p>
+                <mat-form-field appearance="outline" style="width: 100%">
+                    <mat-label>Pilih Lokasi</mat-label>
+                    <input
+                      matInput
+                      type="text"
+                      #location="ngModel"
+                      [(ngModel)]="proximityArea.location"
+                      name="location"
+                      required
+                    />
+                    <mat-icon matPrefix>location_on</mat-icon>
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <!-- select radius -->
+                <p style="color: #000; font-size: 1em;margin-bottom: -2px !important;font-weight: 500;">Radius (in meters)</p>
+                <mat-form-field appearance="outline" style="width: 100%">
+                    <!-- <mat-label>Pilih Lokasi</mat-label> -->
+                    <input
+                      matInput
+                      type="text"
+                      #location="ngModel"
+                      [(ngModel)]="proximityArea.radius"
+                      name="location"
+                      required
+                    />
+                </mat-form-field>
+            </div>
+        </div>
+
+        <!-- Administrative -->
+        <div *ngIf="identifier === 3" class="row">
+          <div class="col-md-12">
+            <h5 style="color: #c7bebe; font-weight: 600; font-size: 1.2em">
+              Administrative Area
+            </h5>
+          </div>
+          <!-- province -->
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="administrative-area" style="width: 100%">
+              <mat-label>Provinsi</mat-label>
+              <mat-select [(ngModel)]="administrativeArea.province" required>
+                <mat-option> Pilih Provinsi </mat-option>
+                <mat-option
+                  *ngFor="let option of listProvince"
+                  [value]="option.name"
+                >
+                  {{ option.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <!-- city -->
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="administrative-area" style="width: 100%">
+              <mat-label>Kota/Kabupaten</mat-label>
+              <mat-select [(ngModel)]="administrativeArea.city" required>
+                <mat-option> Pilih Kota/Kabupaten </mat-option>
+                <mat-option
+                  *ngFor="let option of listCity"
+                  [value]="option.name"
+                >
+                  {{ option.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <!-- Kecamatan -->
+          <div class="col-md-6">
+            <mat-form-field appearance="outline" class="administrative-area" style="width: 100%">
+              <mat-label>Kecamatan</mat-label>
+              <input
+                matInput
+                type="text"
+                #district="ngModel"
+                [(ngModel)]="administrativeArea.district"
+                name="district"
+                required
+              />
+            </mat-form-field>
+          </div>
+          <!-- Kelurahan -->
+          <div class="col-md-6" >
+            <mat-form-field appearance="outline" class="administrative-area" style="width: 100%">
+              <mat-label>Desa/Kelurahan</mat-label>
+              <input
+                matInput
+                type="text"
+                #subdistrict="ngModel"
+                [(ngModel)]="administrativeArea.subdistrict"
+                name="subdistrict"
+                required
+              />
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <p style="color: #4d7db3; text-transform: capitalize">
+              + add value
+            </p>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top: 40px">
+          <div class="col-md-6">
+            <span matStepperPrevious (click)="stepper.reset()">< Kembali</span>
+          </div>
+          <div class="col-md-6" align="right">
+            <button
+              mat-button
+              class="btn btn-primary btn-lg p-2 mb-2 text-white"
+              style="width: 100px"
+            >
+              Apply
+            </button>
+          </div>
+        </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</mat-dialog-content>

@@ -1,0 +1,25 @@
+.col-md-12{
+    // display: flex;
+    // justify-content: center;
+    // flex-direction: column;
+    // width: 100%;
+    .title{
+        text-align: center;
+        font-weight: 600;
+        font-size: 1.15em;
+    }
+    .btn-filter{
+        color: #000 !important;
+        text-align: left;
+        width: 50%;
+        border-color: #000;
+        padding-left: 7px;
+    }
+}
+
+
+::ng-deep .administrative-area .mat-form-field-outline{
+    /*change color of label*/
+    background-color: #8a8a8a !important;
+    border-radius: 7px !important;
+}

@@ -6,6 +6,7 @@ import { DataComponent } from './data/data.component';
 import { ReportComponent } from './report/report.component';
 import { ItemsComponent } from './items/items.component';
 import { PaymentSetupComponent } from './payment-setup/payment-setup.component';
+import { ContributorFilterComponent } from './contributors/contributor-filters/contributor-filters.component';
 
 
 const routes: Routes = [
