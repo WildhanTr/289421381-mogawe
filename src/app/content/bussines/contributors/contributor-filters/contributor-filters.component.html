@@ -1,7 +1,6 @@
 <mat-dialog-content>
     <mat-horizontal-stepper linear #stepper>
-        <mat-step>
-            <ng-template matStepLabel matStepperIcon="fill">Opsi Filter</ng-template>
+        <mat-step state="first" label="Opsi Filter">
             <div class="row">
                 <div class="col-md-12" align="center">
                     <p class="title">Pilih opsi filter</p>
@@ -41,8 +40,7 @@
                 </div>
             </div>
         </mat-step>
-        <mat-step>
-            <ng-template matStepLabel>Setup Filter</ng-template>
+        <mat-step state="second" label="Setup Filter">
 
             <!-- Proximity -->
             <div *ngIf="identifier === 1" class="row">
@@ -82,8 +80,13 @@
                     </h5>
                 </div>
                 <div class="col-md-12">
-                    <agm-map [latitude]="pointCustom.lat" [longitude]="pointCustom.lng" [agmDrawingManager]="drawing" (mapReady)="onMapCustomAreaReady($event)"></agm-map>
-                    <agm-drawing-manager #drawing="agmDrawingManager" [drawingMode]="'polyline'"></agm-drawing-manager>
+                    <agm-map [latitude]="pointCustom.lat" [longitude]="pointCustom.lng"
+                        (mapClick)="onMapCustomAreaReady($event)">
+                        <agm-polyline [strokeWeight]="3" [strokeColor]="'#07b57a'">
+                            <agm-polyline-point *ngFor="let coordinate of listCoordinat; let i=index"
+                                [latitude]="coordinate.lat" [longitude]="coordinate.lng"></agm-polyline-point>
+                        </agm-polyline>
+                    </agm-map>
                 </div>
             </div>
 
@@ -136,14 +139,14 @@
                 </div>
             </div>
 
-            <div class="row" *ngIf="!valueOpen">
+            <div class="row mt-3" *ngIf="!valueOpen">
                 <div class="col-md-12">
                     <p style="color: #4d7db3; text-transform: capitalize;cursor: pointer;" (click)="addValue()">
                         + add value
                     </p>
                 </div>
             </div>
-            
+
             <div [hidden]="!valueOpen" class="mt-3">
                 <div class="row" *ngFor="let filter of filterValue; let i = index">
                     <div class="col-md-2">
@@ -157,7 +160,7 @@
                             </mat-select>
                         </mat-form-field>
                     </div>
-                    
+
                     <div class="col-md-3">
                         <p>Property</p>
                         <mat-form-field appearance="outline" style="width: 100%">
@@ -183,33 +186,37 @@
                     <div class="col-md-3">
                         <p>Value</p>
                         <mat-form-field style="width: 100%;margin-top: 15px;">
-                            <input matInput type="text"  [(ngModel)]="filter.value"
-                                name="value__{{ i }}" required placeholder="Enter Value" />
+                            <input matInput type="text" [(ngModel)]="filter.value" name="value__{{ i }}" required
+                                placeholder="Enter Value" />
                         </mat-form-field>
                     </div>
                     <div class="col-md-2">
-                        <p>OR <span><i class="fa fa-times-circle-o ml-2" style="color: #8a8a8a;margin-top: 15px;"></i></span></p>
+                        <p>OR <span><i class="fa fa-times-circle-o ml-2"
+                                    style="color: #8a8a8a;margin-top: 15px;"></i></span></p>
                     </div>
                 </div>
                 <div class="row" *ngIf="operatorAnd">
                     <div class="col-md-12">
                         <div style="width: 100%;border: 1px solid #000;"></div>
-                        <div style="width: 1px;border: 1px solid #000;height: 15px;margin-left: 25px;margin-top: 5px;"></div>
+                        <div style="width: 1px;border: 1px solid #000;height: 15px;margin-left: 25px;margin-top: 5px;">
+                        </div>
                         <p style="margin-left:15px;margin-top: 8px;">AND</p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <button mat-button class="btn btn-primary btn-lg p-2 mb-2 mr-2 text-white" style="width: 80px" (click)="addInput(1)">
+                        <button mat-button class="btn btn-primary btn-lg p-2 mb-2 mr-2 text-white" style="width: 80px"
+                            (click)="addInput(1)">
                             <i class="fa fa-grip-lines-vertical mr-2"></i> AND
                         </button>
-                        <button mat-button class="btn btn-outline-primary btn-lg p-2 mb-2 text-dark" style="width: 80px" (click)="addInput(0)">
+                        <button mat-button class="btn btn-outline-primary btn-lg p-2 mb-2 text-dark" style="width: 80px"
+                            (click)="addInput(0)">
                             <i class="fa fa-grip-lines-vertical mr-2"></i> OR
                         </button>
                     </div>
                 </div>
             </div>
-            
+
 
             <div class="row" style="margin-top: 40px">
                 <div class="col-md-6">
@@ -217,11 +224,16 @@
                         < Kembali</span>
                 </div>
                 <div class="col-md-6" align="right">
-                    <button mat-button class="btn btn-primary btn-lg p-2 mb-2 text-white" style="width: 100px" (click)="openSaveFilterDialog()" mat-dialog-close>
+                    <button mat-button class="btn btn-primary btn-lg p-2 mb-2 text-white" style="width: 100px"
+                        (click)="openSaveFilterDialog()" mat-dialog-close>
                         Apply
                     </button>
                 </div>
             </div>
         </mat-step>
+
+        <ng-template matStepperIcon="first">
+            <mat-icon></mat-icon>
+        </ng-template>
     </mat-horizontal-stepper>
 </mat-dialog-content>

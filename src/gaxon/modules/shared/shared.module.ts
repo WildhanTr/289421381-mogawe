@@ -24,6 +24,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { PlyrModule } from 'ngx-plyr';
 import { NgxFileDropModule } from 'ngx-file-drop';
 import { ClipboardModule } from 'ngx-clipboard';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 
 @NgModule({
@@ -96,7 +97,11 @@ import { ClipboardModule } from 'ngx-clipboard';
     MatAutocompleteModule
   ],
   providers: [
-    DynamicDomService
+    DynamicDomService,
+    {
+        provide: STEPPER_GLOBAL_OPTIONS,
+        useValue: { displayDefaultIndicatorType: false }
+    }
   ]
 })
 export class SharedModule {

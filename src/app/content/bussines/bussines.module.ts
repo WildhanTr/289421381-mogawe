@@ -23,6 +23,8 @@ import { AppConstant } from '../constant/AppConstant';
 import { ContributorFilterComponent } from './contributors/contributor-filters/contributor-filters.component';
 import { AgmDrawingModule } from '@agm/drawing'
 import { SaveFilterComponent } from './contributors/save-filter/save-filter.component';
+import { AgmDrawingManager } from './contributors/directives/drawing-manager';
+import { AgmDrawingManagerTrigger } from './contributors/directives/drawing-manager-trigger';
 @NgModule({
   declarations: [
     ContributorsComponent,
@@ -34,6 +36,8 @@ import { SaveFilterComponent } from './contributors/save-filter/save-filter.comp
     ItemsComponent,
     PaymentSetupComponent,
     NgbdSortableHeader,
+    AgmDrawingManager,
+    AgmDrawingManagerTrigger
   ],
   imports: [
     CommonModule,
@@ -53,6 +57,10 @@ import { SaveFilterComponent } from './contributors/save-filter/save-filter.comp
     }),
     AgmDrawingModule,
     NgxDaterangepickerMd.forRoot(),
+  ],
+  exports: [
+    AgmDrawingManager,
+    AgmDrawingManagerTrigger
   ]
 })
 export class BussinesModule { }

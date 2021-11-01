@@ -48,8 +48,8 @@ export class ContributorFilterComponent implements OnInit, AfterViewInit {
     operatorAnd = false;
     /* custom area */
     pointCustom: any = {
-        lat: 33.5362475,
-        lng: -111.9267386
+        lat: 0,
+        lng: 20
     }
     
     map: any;
@@ -117,6 +117,8 @@ export class ContributorFilterComponent implements OnInit, AfterViewInit {
         },
     ];
     
+    listCoordinat: any[] = [];
+    
     filterValue: any[] = [{
         type: '',
         property: '',
@@ -138,7 +140,12 @@ export class ContributorFilterComponent implements OnInit, AfterViewInit {
     }
 
     onMapCustomAreaReady(map) {
-        this.initDrawingManager(map);
+        // this.initDrawingManager(map);
+        this.listCoordinat.push({
+            lat: map.coords.lat,
+            lng: map.coords.lng,
+        });
+        console.log(this.listCoordinat);
     }
 
     initDrawingManager(map: any) {
@@ -157,7 +164,8 @@ export class ContributorFilterComponent implements OnInit, AfterViewInit {
         const drawingManager = new google.maps.drawing.DrawingManager({
             drawingControl: true,
             drawingControlOptions: {
-                position: google.maps.ControlPosition.TOP_CENTER
+                position: google.maps.ControlPosition.TOP_CENTER,
+                drawingModes: [google.maps.drawing.OverlayType.POLYLINE]
             },
             polylineOptions: {
                 draggable: true,
