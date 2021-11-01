@@ -1,17 +1,17 @@
-import {NgModule} from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {CommonModule} from '@angular/common';
-import {TranslateModule} from '@ngx-translate/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import {DynamicDomService} from '../../services/dynamic-dom.service';
+import { DynamicDomService } from '../../services/dynamic-dom.service';
 import {
-  BsCardModule, BsMediaObjectModule, CardsModule, GxCardModule, GxIconModule, GxToggleModule, CustomCommonModule,
-  ViewsModule,
-  WidgetsModule, NotificationsModule, GxBadgeModule, GxBreadcrumbsModule
+    BsCardModule, BsMediaObjectModule, CardsModule, GxCardModule, GxIconModule, GxToggleModule, CustomCommonModule,
+    ViewsModule,
+    WidgetsModule, NotificationsModule, GxBadgeModule, GxBreadcrumbsModule
 } from '../../components';
-import {DirectivesModule} from '../../directives/directives.module';
-import {PipesModule} from '../../pipes/pipes.module';
+import { DirectivesModule } from '../../directives/directives.module';
+import { PipesModule } from '../../pipes/pipes.module';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import {MatDialogModule} from '@angular/material/dialog';
 import {DragDropModule} from '@angular/cdk/drag-drop';
@@ -27,6 +27,17 @@ import { ClipboardModule } from 'ngx-clipboard';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 
+export const MOGAWE_DATE_FORMATS = {
+    parse: {
+        dateInput: ['DD-MM-YYYY'],
+    },
+    display: {
+        dateInput: 'DD MMMM YYYY',
+        monthYearLabel: 'MMM YYYY',
+        dateA11yLabel: 'LL',
+        monthYearA11yLabel: 'MMMM YYYY',
+    },
+}
 @NgModule({
   imports: [
     CommonModule,
