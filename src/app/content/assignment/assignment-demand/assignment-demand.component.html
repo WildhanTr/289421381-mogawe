@@ -1,0 +1,278 @@
+<h4 mat-dialog-title>Assign Pengiriman Mola Box, Alfamart Cibubur</h4>
+<div mat-dialog-content>
+    <mat-horizontal-stepper linear #stepper>
+        <mat-step [stepControl]="form1.control" label="Detail Assignment Form" [completed]="item.fee || item.name">
+            <form #form1="ngForm">
+                <ng-template matStepperIcon="phone"><mat-icon>fiber_manual_record</mat-icon></ng-template>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="title-section">Job Detail</p>
+                        
+                        <div class="content-item">
+                            <div class="label-input job-name">Job Name</div>
+                            <div>Pengiriman Mola Box</div>
+                        </div>
+                        
+                        <div class="content-item" style="margin-top: -15px !important;">
+                            <div class="label-input">Duration</div>
+                            <div>
+                                <mat-form-field appearance="outline" class="administrative-area" style="width: 100%;">
+                                    <input matInput type="number" #duration="ngModel" [(ngModel)]="item.duration"
+                                        name="duration" required />
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field appearance="outline" class="area-duration" style="width: 100%;margin-left: -12px;">
+                                    <mat-select  [(ngModel)]="typeDuration" required name="typeDuration">
+                                        <mat-option style="color: #fff !important;" *ngFor="let option of listTypeDuration" [value]="option.value">
+                                            {{ option.value }}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        
+                        <div class="content-item">
+                            <div class="label-input">Fee</div>
+                            <div>
+                                <mat-form-field appearance="outline" class="administrative-area" style="width: 100%;">
+                                    <input matInput type="number" #feeAssignment="ngModel" [(ngModel)]="item.fee"
+                                        name="feeAssignment" required />
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        
+                        <div class="content-item">
+                            <div class="label-input">End</div>
+                            <div>
+                                <mat-form-field class="administrative-area" style="width: 100%;" appearance="outline">
+                                    <input 
+                                        matInput
+                                        [(ngModel)]="item.endDate"
+                                        name="endDateTime"
+                                        #endDateTime="ngModel"
+                                        [owlDateTime]="endDateTimePicker"
+                                        [owlDateTimeTrigger]="endDateTimePicker"
+                                    />
+                                    <mat-datepicker-toggle matSuffix [for]="endDateTimePicker"></mat-datepicker-toggle>
+                                    <owl-date-time #endDateTimePicker>
+                                        
+                                    </owl-date-time>  
+                                    
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        
+                        <!-- Section Receiver -->
+                        <p class="title-section">Penerima</p>
+                        
+                        <div class="content-item">
+                            <div class="label-input">Nama</div>
+                            <div>
+                                <mat-form-field appearance="outline" class="administrative-area" style="width: 100%;">
+                                    <input matInput type="text" #receiverName="ngModel" [(ngModel)]="item.name"
+                                        name="receiverName" required />
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        
+                        <div class="content-item">
+                            <div class="label-input">Alamat</div>
+                            <div>
+                                <mat-form-field appearance="outline" class="administrative-area" style="width: 100%;">
+                                    <input matInput type="text" #receiverAddress="ngModel" [(ngModel)]="item.addressReceiver"
+                                        name="receiverAddress" required />
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        
+                        <div class="content-item">
+                            <div class="label-input">Detail Lokasi</div>
+                            <div>
+                                <mat-form-field appearance="outline" class="administrative-area" style="width: 100%;">
+                                    <input matInput type="text" #locationDetail="ngModel" [(ngModel)]="item.locationName"
+                                        name="locationDetail" required />
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        
+                        <!-- Section Sender -->
+                        <p class="title-section">Pengirim</p>
+                        <div class="content-item">
+                            <div class="label-input">Nama</div>
+                            <div>
+                                <mat-form-field appearance="outline" class="administrative-area" style="width: 100%;">
+                                    <input matInput type="text" #senderName="ngModel" [(ngModel)]="item.senderName"
+                                        name="senderName" required />
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <button mat-button class="btn btn-primary btn-lg p-2 mb-2 text-white" style="width: 60px;height: 60px;margin-top: -10px;">
+                                    <i class="fa fa-user-edit"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="content-item">
+                            <div class="label-input">Alamat</div>
+                            <div>
+                                <mat-form-field appearance="outline" class="administrative-area" style="width: 100%;">
+                                    <input matInput type="text" #senderAddress="ngModel" [(ngModel)]="item.senderAddress"
+                                        name="senderAddress" required />
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        
+                        <div class="content-item">
+                            <div class="label-input">No Telpon</div>
+                            <div>
+                                <mat-form-field appearance="outline" class="administrative-area" style="width: 100%;">
+                                    <input matInput type="number" #senderPhone="ngModel" [(ngModel)]="item.senderPhone"
+                                        name="senderPhone" required />
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        
+                        <!-- Section Item Detail -->
+                        <p class="title-section">Detail Barang</p>
+                        
+                        <div class="content-item">
+                            <div class="label-input">Jenis</div>
+                            <div>
+                                <mat-form-field appearance="outline" class="administrative-area" style="width: 100%;">
+                                    <input matInput type="text" #type="ngModel" [(ngModel)]="item.type"
+                                        name="type" required />
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        
+                        <div class="content-item">
+                            <div class="label-input">Berat (gr)</div>
+                            <div>
+                                <mat-form-field appearance="outline" class="administrative-area" style="width: 100%;">
+                                    <input matInput type="number" #itemWeight="ngModel" [(ngModel)]="item.itemWeight"
+                                        name="itemWeight" required />
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <p class="text-danger" style="margin-top: 10px;" mat-dialog-close>Discard</p>
+                    </div>
+                    <div class="col-md-6" align="right">
+                        <button mat-button class="btn btn-primary btn-lg p-2 mb-2 text-white" style="width: 100px" (click)="nextStep(stepper)">
+                            Next
+                        </button>
+                    </div>
+                    <!-- <button mat-button matStepperNext>Next</button> -->
+                </div>
+            </form>
+        </mat-step>
+        
+        
+        <mat-step label="Assignment Summary">
+            <ng-template matStepperIcon><mat-icon>fiber_manual_record</mat-icon></ng-template>
+            <div class="row mb-3" style="background-color: #cec3c3;border-radius: 10px;">
+                <div class="col-md-6">
+                    <p class="title-section">Job Detail</p>
+                    
+                    <div>
+                        <p class="subtitle-section">Job Name</p>
+                        <p class="detail-section">Komando AMD Cibubur</p>
+                    </div>
+                    
+                    <div>
+                        <p class="subtitle-section">Duration</p>
+                        <p class="detail-section">{{ item.duration }} {{ typeDuration }}</p>
+                    </div>
+                    
+                    <div>
+                        <p class="subtitle-section">Fee</p>
+                        <p class="detail-section">{{ item.fee | currency: 'RP ' }}</p>
+                    </div>
+                    
+                    <div>
+                        <p class="subtitle-section">End</p>
+                        <p class="detail-section">{{ item.endDate }} </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <p class="title-section">Detail Barang</p>
+                    
+                    <div>
+                        <p class="subtitle-section">Jenis</p>
+                        <p class="detail-section">{{ item.type }}</p>
+                    </div>
+                    
+                    <div>
+                        <p class="subtitle-section">Berat (gr)</p>
+                        <p class="detail-section">{{ item.itemWeight }} {{ typeDuration }}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row" style="background-color: #cec3c3;border-radius: 10px;">
+                <div class="col-md-6">
+                    <p class="title-section">Penerima</p>
+                    
+                    <div>
+                        <p class="subtitle-section">Nama</p>
+                        <p class="detail-section">{{ item.name }}</p>
+                    </div>
+                    
+                    <div>
+                        <p class="subtitle-section">Alamat</p>
+                        <p class="detail-section">{{ item.addressReceiver }}</p>
+                    </div>
+                    
+                    <div>
+                        <p class="subtitle-section">Detail Lokasi</p>
+                        <p class="detail-section">{{ item.locationName }}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <p class="title-section">Pengirim</p>
+                    
+                    <div>
+                        <p class="subtitle-section">Nama</p>
+                        <p class="detail-section">{{ item.senderName }}</p>
+                    </div>
+                    
+                    <div>
+                        <p class="subtitle-section">Alamat</p>
+                        <p class="detail-section">{{ item.senderAddress }}</p>
+                    </div>
+                    
+                    <div>
+                        <p class="subtitle-section">No Telepon</p>
+                        <p class="detail-section">{{ item.senderPhone }}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-12" align="right">
+                    <qrcode [qrdata]="'testQrCode'" [width]="256" #parent [level]="'M'" elementType="url"></qrcode>
+                    <p style="cursor: pointer;color: #000;margin-right: 90px;" (click)="saveAsImage(parent)">Print QR Code</p>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-md-6">
+                    <p style="margin-top: 10px;cursor: pointer;color: #000;font-size: 1em;" (click)="backStep(stepper)">< Back</p>
+
+                </div>
+                <div class="col-md-6" align="right">
+                    <button mat-button class="btn btn-outline-primary btn-lg p-2 mb-2 text-dark mr-3" style="width: 100px" (click)="showAlert(0)">
+                        Publish
+                    </button>
+                    <button mat-button class="btn btn-primary btn-lg p-2 mb-2 text-white" style="width: 100px" (click)="showAlert(1)">
+                        Assign
+                    </button>
+                </div>
+            </div>
+        </mat-step>
+    </mat-horizontal-stepper>
+</div>

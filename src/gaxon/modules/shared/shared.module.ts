@@ -17,7 +17,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
-import {MatAutocompleteModule, MatInputModule, MatProgressSpinnerModule, MatSelectModule, MatSortModule} from '@angular/material';
+import {MatAutocompleteModule, MatDatepickerModule, MatInputModule, MatNativeDateModule, MatProgressSpinnerModule, MatSelectModule, MatSortModule} from '@angular/material';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
@@ -57,7 +57,9 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
     MatFormFieldModule,
     MatSlideToggleModule,
     MatSortModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatNativeDateModule,
+    MatDatepickerModule
   ],
   declarations: [
   ],
@@ -94,7 +96,9 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
     MatSelectModule,
     PlyrModule,
     ClipboardModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
     DynamicDomService,
