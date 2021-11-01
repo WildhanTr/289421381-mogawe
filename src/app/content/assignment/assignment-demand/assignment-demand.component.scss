@@ -1,0 +1,58 @@
+@import '~ng-pick-datetime/assets/style/picker.min.css';
+
+.content-item{
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 30% auto 20%;
+    font-size: 1.1em;
+    height: 95px;
+    align-items: center;
+    .label-input{
+        color: #000;
+        margin-left: 25px;
+        margin-top: -25px !important;
+        &.job-name{
+            margin-top: 0px !important;
+        }
+    }
+}
+
+.title-section{
+    font-size: 1.1em;
+    color: #000;
+    font-weight: 500;
+    margin: 10px 0px;
+}
+
+.subtitle-section{
+    font-size: 0.9em;
+    color: #8f8e8e;
+    margin-bottom: -4px;
+}
+
+.detail-section{
+    font-size: 1.1em;
+    font-weight: 400;
+}
+
+::ng-deep .administrative-area .mat-form-field-outline{
+    /*change color of label*/
+    background-color: #8a8a8a !important;
+    border-radius: 7px !important;
+}
+
+::ng-deep .area-duration .mat-form-field-outline{
+    /*change color of label*/
+    background-color: #4D7DB3 !important;
+    border-radius: 7px !important;
+}
+
+.mat-select-value{
+    color: #fff;
+}
+
+::ng-deep th{
+    background: #fff !important;
+}
+
+

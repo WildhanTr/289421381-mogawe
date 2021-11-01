@@ -17,13 +17,15 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
-import {MatInputModule, MatProgressSpinnerModule, MatSortModule} from '@angular/material';
+import {MatAutocompleteModule, MatDatepickerModule, MatInputModule, MatNativeDateModule, MatProgressSpinnerModule, MatSelectModule, MatSortModule} from '@angular/material';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { PlyrModule } from 'ngx-plyr';
 import { NgxFileDropModule } from 'ngx-file-drop';
 import { ClipboardModule } from 'ngx-clipboard';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+
 
 @NgModule({
   imports: [
@@ -54,7 +56,10 @@ import { ClipboardModule } from 'ngx-clipboard';
     MatStepperModule,
     MatFormFieldModule,
     MatSlideToggleModule,
-    MatSortModule
+    MatSortModule,
+    MatAutocompleteModule,
+    MatNativeDateModule,
+    MatDatepickerModule
   ],
   declarations: [
   ],
@@ -88,11 +93,19 @@ import { ClipboardModule } from 'ngx-clipboard';
     MatFormFieldModule,
     MatSlideToggleModule,
     NgxFileDropModule,
+    MatSelectModule,
     PlyrModule,
-    ClipboardModule
+    ClipboardModule,
+    MatAutocompleteModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
-    DynamicDomService
+    DynamicDomService,
+    {
+        provide: STEPPER_GLOBAL_OPTIONS,
+        useValue: { displayDefaultIndicatorType: false }
+    }
   ]
 })
 export class SharedModule {

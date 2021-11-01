@@ -20,16 +20,24 @@ import { GaugeChartModule } from 'angular-gauge-chart';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { NgbdSortableHeader } from '@app/sortable.directive';
 import { AppConstant } from '../constant/AppConstant';
-
+import { ContributorFilterComponent } from './contributors/contributor-filters/contributor-filters.component';
+import { AgmDrawingModule } from '@agm/drawing'
+import { SaveFilterComponent } from './contributors/save-filter/save-filter.component';
+import { AgmDrawingManager } from './contributors/directives/drawing-manager';
+import { AgmDrawingManagerTrigger } from './contributors/directives/drawing-manager-trigger';
 @NgModule({
   declarations: [
     ContributorsComponent,
+    ContributorFilterComponent,
+    SaveFilterComponent,
     WorkplaceComponent,
     DataComponent,
     ReportComponent,
     ItemsComponent,
     PaymentSetupComponent,
-    NgbdSortableHeader
+    NgbdSortableHeader,
+    AgmDrawingManager,
+    AgmDrawingManagerTrigger
   ],
   imports: [
     CommonModule,
@@ -44,9 +52,15 @@ import { AppConstant } from '../constant/AppConstant';
     GaugeChartModule,
     NgxSliderModule,
     AgmCoreModule.forRoot({
-      apiKey: AppConstant.GMAP_API_KEY
+      apiKey: AppConstant.GMAP_API_KEY,
+      libraries: ['places', 'drawing', 'geometry']
     }),
-    NgxDaterangepickerMd.forRoot()
+    AgmDrawingModule,
+    NgxDaterangepickerMd.forRoot(),
+  ],
+  exports: [
+    AgmDrawingManager,
+    AgmDrawingManagerTrigger
   ]
 })
 export class BussinesModule { }

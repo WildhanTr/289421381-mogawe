@@ -57,4 +57,9 @@ export class Assignment {
     endDate: string;
     questionnaireName: string;
     assignee: string;
+    addressReceiver: string;
+    senderName: string;
+    senderAddress: string;
+    senderPhone: number;
+    itemWeight: number;
 }

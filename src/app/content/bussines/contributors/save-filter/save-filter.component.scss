@@ -1,0 +1,9 @@
+.content-item {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 20% auto;
+    font-weight: 400;
+    font-size: 1.1em;
+    height: 95px;
+    align-items: center;
+}
