@@ -53,9 +53,13 @@ select.select-custom option{
 }
 
 .bg-secondary{
-    background-color: #8a8a8a !important;
-    color: #fff !important;
+    background-color: #f3f1f2 !important;
+    color: #000 !important;
     margin-top: -22px !important;
+    font-weight: 500;
+    &::placeholder{
+        color: #000 !important;
+    }
 }
 
 .btn-contact{
