@@ -27,7 +27,7 @@
 .subtitle-section{
     font-size: 0.9em;
     color: #8f8e8e;
-    margin-bottom: -4px;
+    margin-bottom: 0xpx;
 }
 
 .detail-section{
@@ -47,12 +47,34 @@
     border-radius: 7px !important;
 }
 
+select.select-custom option{
+    background: #fff !important;
+    color: #000;
+}
+
+.bg-secondary{
+    background-color: #8a8a8a !important;
+    color: #fff !important;
+    margin-top: -22px !important;
+}
+
+.btn-contact{
+    height: 45px !important;
+    width: 45px;
+}
+
 .mat-select-value{
     color: #fff;
 }
 
 ::ng-deep th{
     background: #fff !important;
+}
+
+button:disabled{
+    color: #fff;
+    background-color: #8a8a8a;
+    cursor: not-allowed;
 }
 
 

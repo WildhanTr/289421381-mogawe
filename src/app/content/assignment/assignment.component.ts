@@ -35,6 +35,7 @@ export class AssignmentComponent implements OnInit {
             width: "85%",
             minWidth: "300px",
             maxWidth: "700px",
+            disableClose: true
         };
         this.dialog.open(AssignmentDemandComponent, modalConf);
     }

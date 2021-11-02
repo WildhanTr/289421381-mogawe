@@ -28,3 +28,38 @@ agm-map{
     height: 300px;
     margin-bottom: 15px;
 }
+
+.font-weight-600{
+    font-size: 15px !important;
+}
+
+.bg-secondary{
+    background-color: #8a8a8a !important;
+    color: #fff !important;
+}
+
+.input-custom-value{
+    border: none !important;
+    border-bottom: 1px solid #000 !important;
+    outline: none !important;
+    padding: 10px 3px;
+}
+
+select option{
+    background: #fff !important;
+    color: #000;
+}
+
+.input-group-proxy {
+    span{
+        position: absolute;
+        margin-left: 10px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+    }
+    input{
+        padding-left: 25px !important;
+    }
+}
+

@@ -19,6 +19,8 @@ import { AdministrativeArea, ProximityArea } from "@app/model/contributorsFilter
 import { Observable } from "rxjs";
 import { map, startWith } from "rxjs/operators";
 import { SaveFilterComponent } from "../save-filter/save-filter.component";
+import {} from 'googlemaps';
+
 
 
 @Component({
@@ -33,6 +35,8 @@ import { SaveFilterComponent } from "../save-filter/save-filter.component";
 
 export class ContributorFilterComponent implements OnInit, AfterViewInit {
     @ViewChild("stepper") private myStepper: MatStepper;
+    @ViewChild("customMap", {static: true}) mapElement: ElementRef;
+    customMap: google.maps.Map;
     totalStepsCount: number;
     identifier: number;
 
@@ -125,6 +129,13 @@ export class ContributorFilterComponent implements OnInit, AfterViewInit {
         operator: '',
         value: ''
     }]
+    
+    filter: any = {
+        type: '',
+        property: '',
+        operator: '',
+        value: ''
+    }
 
     @ViewChild("searchLocation") public searchLocation: ElementRef;
     @ViewChild("mapCustomRef") public mapCustomRef: ElementRef;
@@ -137,6 +148,16 @@ export class ContributorFilterComponent implements OnInit, AfterViewInit {
     ) { }
 
     ngOnInit() {
+        this.initCustomMap();
+    }
+    
+    initCustomMap(){
+        const mapProperties = {
+            center: new google.maps.LatLng(35, -80.40),
+            zoom: 15,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        this.customMap = new google.maps.Map(this.mapElement.nativeElement, mapProperties);
     }
 
     onMapCustomAreaReady(map) {
@@ -176,16 +197,22 @@ export class ContributorFilterComponent implements OnInit, AfterViewInit {
         drawingManager.setMap(map);
     }
     
-    addInput(identifier: number){
-        if(identifier > 0){
-            this.operatorAnd = true;
-        }
-        this.filterValue.push({
-            type: '',
-            property: '',
-            operator: '',
-            value: ''
-        })
+    addInput(){
+        // if(identifier > 0){
+        //     this.operatorAnd = true;
+        // }
+        // this.filterValue.push({
+        //     type: '',
+        //     property: '',
+        //     operator: '',
+        //     value: ''
+        // })
+        alert("Clicked")
+    }
+    
+    backStep(stepper: MatStepper){
+        stepper.reset();
+        this.valueOpen = false;
     }
     openSaveFilterDialog(){
         const modalConf = {
