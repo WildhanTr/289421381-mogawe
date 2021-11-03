@@ -7,6 +7,7 @@ import {
     AfterViewInit,
     ElementRef,
     NgZone,
+    AfterContentInit,
 } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatStepper } from "@angular/material";
@@ -33,9 +34,8 @@ import {} from 'googlemaps';
 })
 
 
-export class ContributorFilterComponent implements OnInit, AfterViewInit {
+export class ContributorFilterComponent implements OnInit, AfterViewInit, AfterContentInit {
     @ViewChild("stepper") private myStepper: MatStepper;
-    @ViewChild("customMap", {static: true}) mapElement: ElementRef;
     customMap: google.maps.Map;
     totalStepsCount: number;
     identifier: number;
@@ -52,12 +52,12 @@ export class ContributorFilterComponent implements OnInit, AfterViewInit {
     operatorAnd = false;
     /* custom area */
     pointCustom: any = {
-        lat: 0,
-        lng: 20
+        lat: -6.5700694,
+        lng: 106.8097000
     }
     
     map: any;
-  drawingManager: any;
+    drawingManager: any;
 
     valueOpen: boolean = false;
     listDistrict: any[] = [
@@ -138,7 +138,6 @@ export class ContributorFilterComponent implements OnInit, AfterViewInit {
     }
 
     @ViewChild("searchLocation") public searchLocation: ElementRef;
-    @ViewChild("mapCustomRef") public mapCustomRef: ElementRef;
 
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: any,
@@ -148,16 +147,35 @@ export class ContributorFilterComponent implements OnInit, AfterViewInit {
     ) { }
 
     ngOnInit() {
-        this.initCustomMap();
     }
     
-    initCustomMap(){
+    ngAfterContentInit(){
+        // this.initCustomMap();
+    }
+    
+    initCustomMap = () => {
         const mapProperties = {
-            center: new google.maps.LatLng(35, -80.40),
+            center: new google.maps.LatLng(this.pointCustom.lat, this.pointCustom.lng),
             zoom: 15,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
+            zoomControl: false,
+            streetViewControl: true,
         };
-        this.customMap = new google.maps.Map(this.mapElement.nativeElement, mapProperties);
+        setTimeout(() => {
+            this.customMap = new google.maps.Map(document.getElementById('mapTest'), mapProperties);
+        }, 3000)
+    }
+    
+    drawPolyline(path: any){
+        const polylineProperties = new google.maps.Polyline({
+            path: this.listCoordinat,
+            geodesic: true,
+            strokeColor: '#fff',
+            strokeOpacity: 1.0,
+            strokeWeight: 3
+        });
+        this.listCoordinat.push(new google.maps.LatLng(path.coords.lat, path.coords.lng));
+        polylineProperties.setMap(this.customMap);
+        console.log(this.listCoordinat);
     }
 
     onMapCustomAreaReady(map) {

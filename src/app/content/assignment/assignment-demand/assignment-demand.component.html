@@ -1,7 +1,7 @@
 <h4 mat-dialog-title>Assign Pengiriman Mola Box, Alfamart Cibubur</h4>
 <div mat-dialog-content>
-    <mat-horizontal-stepper linear #stepper>
-        <mat-step [stepControl]="form1.control" label="Detail Assignment Form" [completed]="item.fee || item.name">
+    <mat-horizontal-stepper #stepper>
+        <mat-step [stepControl]="form1.control" label="Detail Assignment Form" [completed]="item.fee || item.name" >
             <form #form1="ngForm">
                 <ng-template matStepperIcon="phone">
                     <mat-icon>fiber_manual_record</mat-icon>
@@ -11,8 +11,8 @@
                         <p class="title-section">Job Detail</p>
 
                         <div class="content-item">
-                            <div class="label-input job-name">Job Name</div>
-                            <div>Pengiriman Mola Box</div>
+                            <div class="label-input label-input-job-name">Job Name</div>
+                            <div class=" label-input-job-name">Pengiriman Mola Box</div>
                         </div>
 
                         <div class="content-item" style="margin-top: -15px !important;">
@@ -143,13 +143,9 @@
                 </div>
             </form>
         </mat-step>
-
-
-        <mat-step label="Assignment Summary">
-            <ng-template matStepperIcon>
-                <mat-icon>fiber_manual_record</mat-icon>
-            </ng-template>
-            <div class="row mb-3" style="background-color: #cec3c3;border-radius: 10px;">
+        
+        <mat-step label="Assignment Summary" >
+            <div class="row mb-3" style="background-color: #f3f1f2;border-radius: 10px;">
                 <div class="col-md-6">
                     <p class="title-section">Job Detail</p>
 
@@ -188,7 +184,7 @@
                 </div>
             </div>
 
-            <div class="row" style="background-color: #cec3c3;border-radius: 10px;">
+            <div class="row" style="background-color: #f3f1f2;border-radius: 10px;">
                 <div class="col-md-6">
                     <p class="title-section">Penerima</p>
 
@@ -237,21 +233,27 @@
 
             <div class="row mt-5">
                 <div class="col-md-6">
-                    <p style="margin-top: 10px;cursor: pointer;color: #000;font-size: 1em;" (click)="backStep(stepper)">
-                        < Back</p>
+                    <p style="margin-top: 10px;cursor: pointer;color: #000;font-size: 1em;" (click)="backStep(stepper)"><i class="fas fa-less-than mr-1"></i> <span style="font-size: 15px;">Back</span></p>
 
                 </div>
                 <div class="col-md-6" align="right">
                     <button mat-button class="btn btn-outline-primary btn-lg p-2 mb-2 text-dark mr-3"
-                        style="width: 100px" (click)="showAlert(0)">
+                        style="width: 125px; color:#4d7db3" (click)="showAlert(0)">
                         Publish
                     </button>
-                    <button mat-button class="btn btn-primary btn-lg p-2 mb-2 text-white" style="width: 100px"
+                    <button mat-button class="btn btn-primary btn-lg p-2 mb-2 text-white" style="width: 125px"
                         (click)="showAlert(1)">
                         Assign
                     </button>
                 </div>
             </div>
         </mat-step>
+        
+        <ng-template matStepperIcon="edit">
+        </ng-template>
+        <ng-template matStepperIcon="number">
+        </ng-template>
+        <ng-template matStepperIcon="done">
+        </ng-template>
     </mat-horizontal-stepper>
 </div>
