@@ -28,3 +28,42 @@ agm-map{
     height: 300px;
     margin-bottom: 15px;
 }
+
+.font-weight-600{
+    font-size: 15px !important;
+}
+
+.bg-secondary{
+    background-color: #f3f1f2 !important;
+    color: #000 !important;
+    font-weight: 500;
+    &::placeholder{
+        color: #000 !important;
+    }
+}
+
+.input-custom-value{
+    border: none !important;
+    border-bottom: 1px solid #000 !important;
+    outline: none !important;
+    padding: 10px 3px;
+}
+
+select option{
+    background: #fff !important;
+    color: #000;
+}
+
+.input-group-proxy {
+    span{
+        position: absolute;
+        margin-left: 10px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+    }
+    input{
+        padding-left: 25px !important;
+    }
+}
+

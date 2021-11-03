@@ -51,7 +51,8 @@ export class ContributorsComponent implements OnInit {
         const modalConf: MatDialogConfig = {
             width: "85%",
             minWidth: "300px",
-            maxWidth: '700px'
+            maxWidth: '700px',
+            disableClose: true
         };
         this.dialog.open(ContributorFilterComponent, modalConf)
     }
