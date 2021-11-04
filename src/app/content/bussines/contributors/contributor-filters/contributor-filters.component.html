@@ -290,8 +290,7 @@
 
             <div class="row" style="margin-top: 40px">
                 <div class="col-md-6">
-                    <span matStepperPrevious (click)="backStep(stepper)" style="cursor: pointer;">
-                        < Kembali</span>
+                    <p style="margin-top: 10px;cursor: pointer;color: #000;font-size: 1em;" (click)="backStep(stepper)"><i class="fas fa-less-than mr-1"></i> <span style="font-size: 15px;">Kembali</span></p>
                 </div>
                 <div class="col-md-6" align="right">
                     <button mat-button class="btn btn-primary btn-lg p-2 mb-2 text-white" style="width: 100px"
@@ -302,8 +301,11 @@
             </div>
         </mat-step>
 
-        <ng-template matStepperIcon="first">
-            <mat-icon></mat-icon>
+        <ng-template matStepperIcon="edit">
+        </ng-template>
+        <ng-template matStepperIcon="number">
+        </ng-template>
+        <ng-template matStepperIcon="done">
         </ng-template>
     </mat-horizontal-stepper>
 </mat-dialog-content>
