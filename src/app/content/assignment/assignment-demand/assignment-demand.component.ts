@@ -1,3 +1,4 @@
+import { MAT_STEPPER_GLOBAL_OPTIONS } from "@angular/cdk/stepper";
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { MatStepper } from "@angular/material";
 import { Assignment } from "@app/model/assignment";
@@ -7,6 +8,9 @@ import moment from "moment";
     selector: "app-assignment-demand",
     templateUrl: "./assignment-demand.component.html",
     styleUrls: ["./assignment-demand.component.scss"],
+    providers: [{
+        provide: MAT_STEPPER_GLOBAL_OPTIONS, useValue: { displayDefaultIndicatorType: false }
+    }]
 })
 export class AssignmentDemandComponent implements OnInit {
     item: Assignment = new Assignment();

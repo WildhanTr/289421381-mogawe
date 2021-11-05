@@ -46,7 +46,7 @@
             <!-- Proximity -->
             <div *ngIf="identifier === 1" class="row">
                 <div class="col-md-12">
-                    <h5 style="color: #c7bebe; font-weight: 600; font-size: 1.2em">
+                    <h5 style="color: #757575; font-weight: 600; font-size: 1.2em">
                         Proximity
                     </h5>
                 </div>
@@ -72,13 +72,13 @@
             <!-- Custom -->
             <div *ngIf="identifier === 2" class="row">
                 <div class="col-md-12">
-                    <h5 style="color: #c7bebe; font-weight: 600; font-size: 1.2em">
+                    <h5 style="color: #757575; font-weight: 600; font-size: 1.2em">
                         Custom Area <button class="btn btn-outline-primary btn-sm ml-1"><i class="fas fa-cog" style="font-size: 20px;"></i></button>
                     </h5>
                 </div>
                 
                 <!-- <div class="col-md-12">
-                    <div #customMap style="width: 100%;height: 250px;"></div>
+                    <div id="mapTest" (clcik)="drawPolyline($event)" style="width: 100%;height: 250px;"></div>
                 </div> -->
                 
                 <!-- using agm -->
@@ -96,7 +96,7 @@
             <!-- Administrative -->
             <div *ngIf="identifier === 3" class="row">
                 <div class="col-md-12">
-                    <h5 style="color: #c7bebe; font-weight: 600; font-size: 1.2em">
+                    <h5 style="color: #757575; font-weight: 600; font-size: 1.2em">
                         Administrative Area
                     </h5>
                 </div>
@@ -290,8 +290,7 @@
 
             <div class="row" style="margin-top: 40px">
                 <div class="col-md-6">
-                    <span matStepperPrevious (click)="backStep(stepper)" style="cursor: pointer;">
-                        < Kembali</span>
+                    <p style="margin-top: 10px;cursor: pointer;color: #000;font-size: 1em;" (click)="backStep(stepper)"><i class="fas fa-less-than mr-1"></i> <span style="font-size: 15px;">Kembali</span></p>
                 </div>
                 <div class="col-md-6" align="right">
                     <button mat-button class="btn btn-primary btn-lg p-2 mb-2 text-white" style="width: 100px"
@@ -302,8 +301,11 @@
             </div>
         </mat-step>
 
-        <ng-template matStepperIcon="first">
-            <mat-icon></mat-icon>
+        <ng-template matStepperIcon="edit">
+        </ng-template>
+        <ng-template matStepperIcon="number">
+        </ng-template>
+        <ng-template matStepperIcon="done">
         </ng-template>
     </mat-horizontal-stepper>
 </mat-dialog-content>
